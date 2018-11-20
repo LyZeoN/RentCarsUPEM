@@ -5,6 +5,7 @@ public class Client {
 
 	public static void main(String[] args) {
 		try {
+			//TODO
 			ICars cars = (ICars) Naming.lookup("RentCarsUPEM");
 			IEmployees employees = (IEmployees) Naming.lookup("rmi://localhost:27017/UPEMCorp");
 			ICar car1 = cars.addCar("308", 15000, 300);
