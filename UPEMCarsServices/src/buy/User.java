@@ -9,7 +9,7 @@ public class User {
 	private String password;
 	private int id;
 	private List<Integer> basket = new ArrayList<>();
-	private List<Integer> history = new ArrayList<>();
+	private List<CarSquelleton> history = new ArrayList<>();
 	
 	public User() {
 		id = -1;
@@ -50,8 +50,8 @@ public class User {
 
 
 
-	public Integer[] getHistory() {
-		return (Integer[]) history.toArray();
+	public CarSquelleton[] getHistory() {
+		return (CarSquelleton[]) history.toArray();
 	}
 
 
@@ -63,8 +63,8 @@ public class User {
 		basket.add(id);
 		
 	}
-	public void addArticleHistory(int id) {
-		history.add(id);
+	public void addArticleHistory(String model,double price,int haveBeenRented) {
+		history.add(new CarSquelleton(model,price,haveBeenRented));
 		
 	}
 

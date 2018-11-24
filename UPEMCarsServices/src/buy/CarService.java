@@ -78,30 +78,9 @@ public class CarService{
 		
 		ArrayList<CarSquelleton> tabCars = new ArrayList<CarSquelleton>();
 		
-		Integer[] shoppingCart = users.get(userID).getHistory();
-		try {
-			Remote s = Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
-			if(s instanceof ICars) {
-				for(int carID : shoppingCart) {
-					int haveBeenRented = ((ICars) s).getSelectedCarsHBR(carID);
-					String model = ((ICars) s).getSelectedCarsModel(carID);
-					double price = ((ICars) s).getSelectedCarsPrice(carID);
-					tabCars.add(new CarSquelleton(model,price,haveBeenRented));
-
-				}
-				return (CarSquelleton[]) tabCars.toArray();
-			}
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		return users.get(userID).getHistory();
+		
+		
 
 		
 		
@@ -114,11 +93,11 @@ public class CarService{
 		return true;
 		
 	}
-	public boolean addArticleHistory(int articleID,int userID) {
+	public boolean addArticleHistory(String model,double price,int haveBeenRented,int userID) {
 		User user = users.get(userID);
 		if(user == null)
 			return false;
-		user.addArticleHistory(articleID);
+		user.addArticleHistory(model,price,haveBeenRented);
 		return true;
 		
 	}

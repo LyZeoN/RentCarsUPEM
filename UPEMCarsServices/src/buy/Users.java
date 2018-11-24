@@ -69,6 +69,7 @@ public class Users {
 		
 		
 	}
+	/*
 	public CarSquelleton[] getUserHistory(int userID) {
 		
 		ArrayList<CarSquelleton> tabCars = new ArrayList<CarSquelleton>();
@@ -109,12 +110,6 @@ public class Users {
 		return true;
 		
 	}
-	public boolean addArticleHistory(int articleID,int userID) {
-		User user = users.get(userID);
-		if(user == null)
-			return false;
-		user.addArticleHistory(articleID);
-		return true;
-		
-	}
+	*/
+	
 }
