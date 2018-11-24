@@ -1,0 +1,53 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from UPEMCorpGatewayService WSDL service -->
+
+  <service name="UPEMCorpGateway" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://buy"/>
+      <parameter name="wsdlServiceElement" value="UPEMCorpGatewayService"/>
+      <parameter name="schemaQualified" value="http://buy"/>
+      <parameter name="wsdlServicePort" value="UPEMCorpGateway"/>
+      <parameter name="className" value="buy.UPEMCorpGatewaySoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="UPEMCorpGateway"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="add" qname="operNS:add" xmlns:operNS="http://buy" returnQName="retNS:addReturn" xmlns:retNS="http://buy" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:firstName" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:lastName" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:mail" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="connection" qname="operNS:connection" xmlns:operNS="http://buy" returnQName="retNS:connectionReturn" xmlns:retNS="http://buy" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:mail" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="notifyUser" qname="operNS:notifyUser" xmlns:operNS="http://buy" soapAction="" >
+        <parameter qname="pns:userID" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:model" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getEmployees" qname="operNS:getEmployees" xmlns:operNS="http://buy" returnQName="retNS:getEmployeesReturn" xmlns:retNS="http://buy" returnType="rtns:Employee" xmlns:rtns="http://buy" soapAction="" >
+      </operation>
+      <operation name="getEmployee" qname="operNS:getEmployee" xmlns:operNS="http://buy" returnQName="retNS:getEmployeeReturn" xmlns:retNS="http://buy" returnType="rtns:Employee" xmlns:rtns="http://buy" soapAction="" >
+        <parameter qname="pns:employeeID" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="add notifyUser getEmployees getEmployee connection"/>
+
+      <typeMapping
+        xmlns:ns="http://buy"
+        qname="ns:Employee"
+        type="java:buy.Employee"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from AccountService WSDL service -->
+
+  <service name="Account" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://bank.upem.fr"/>
+      <parameter name="wsdlServiceElement" value="AccountService"/>
+      <parameter name="schemaQualified" value="http://bank.upem.fr"/>
+      <parameter name="wsdlServicePort" value="Account"/>
+      <parameter name="className" value="fr.upem.bank.Account"/>
+      <parameter name="wsdlPortType" value="Account"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://bank.upem.fr" xmlns:retNS="http://bank.upem.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="convert" qname="operNS:convert" returnQName="retNS:convertReturn" returnType="rtns:double" soapAction="">
+        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:cur1" type="tns:string"/>
+        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:cur2" type="tns:string"/>
+        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:amount" type="tns:double"/>
+      </operation>
+      <operation xmlns:operNS="http://bank.upem.fr" xmlns:retNS="http://bank.upem.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getFirstName" qname="operNS:getFirstName" returnQName="retNS:getFirstNameReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://bank.upem.fr" xmlns:retNS="http://bank.upem.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getMail" qname="operNS:getMail" returnQName="retNS:getMailReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://bank.upem.fr" name="setMail" qname="operNS:setMail" soapAction="">
+        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:mail" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://bank.upem.fr" name="setFirstName" qname="operNS:setFirstName" soapAction="">
+        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:firstName" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://bank.upem.fr" name="setAdress" qname="operNS:setAdress" soapAction="">
+        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:adress" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://bank.upem.fr" name="setLastName" qname="operNS:setLastName" soapAction="">
+        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:lastName" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://bank.upem.fr" xmlns:retNS="http://bank.upem.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getPhoneNumber" qname="operNS:getPhoneNumber" returnQName="retNS:getPhoneNumberReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://bank.upem.fr" name="setPhoneNumber" qname="operNS:setPhoneNumber" soapAction="">
+        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:phoneNumber" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://bank.upem.fr" xmlns:retNS="http://bank.upem.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="deposit" qname="operNS:deposit" returnQName="retNS:depositReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:amount" type="tns:double"/>
+      </operation>
+      <operation xmlns:operNS="http://bank.upem.fr" xmlns:retNS="http://bank.upem.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getAdress" qname="operNS:getAdress" returnQName="retNS:getAdressReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://bank.upem.fr" xmlns:retNS="http://bank.upem.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getLastName" qname="operNS:getLastName" returnQName="retNS:getLastNameReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://bank.upem.fr" xmlns:retNS="http://bank.upem.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getBalance" qname="operNS:getBalance" returnQName="retNS:getBalanceReturn" returnType="rtns:double" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://bank.upem.fr" xmlns:retNS="http://bank.upem.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getPassword" qname="operNS:getPassword" returnQName="retNS:getPasswordReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://bank.upem.fr" xmlns:retNS="http://bank.upem.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getCurrency" qname="operNS:getCurrency" returnQName="retNS:getCurrencyReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://bank.upem.fr" name="setCurrency" qname="operNS:setCurrency" soapAction="">
+        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:currency" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://bank.upem.fr" xmlns:retNS="http://bank.upem.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="withdraw" qname="operNS:withdraw" returnQName="retNS:withdrawReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:amount" type="tns:double"/>
+      </operation>
+      <operation xmlns:operNS="http://bank.upem.fr" name="setPassword" qname="operNS:setPassword" soapAction="">
+        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:password" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="getCurrency setPassword convert getLastName setCurrency getMail setAdress setLastName getPassword getBalance setMail setFirstName setPhoneNumber deposit getPhoneNumber getFirstName getAdress withdraw"/>
+
+  </service>
+</deployment>

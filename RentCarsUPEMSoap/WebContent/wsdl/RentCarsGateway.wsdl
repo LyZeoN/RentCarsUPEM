@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://buy" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://buy" xmlns:intf="http://buy" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://buy" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getSelectedCarsHBR">
+    <complexType>
+     <sequence>
+      <element name="carID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSelectedCarsHBRResponse">
+    <complexType>
+     <sequence>
+      <element name="getSelectedCarsHBRReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSelectedCarsModel">
+    <complexType>
+     <sequence>
+      <element name="carID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSelectedCarsModelResponse">
+    <complexType>
+     <sequence>
+      <element name="getSelectedCarsModelReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSelectedCarsPrice">
+    <complexType>
+     <sequence>
+      <element name="carID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSelectedCarsPriceResponse">
+    <complexType>
+     <sequence>
+      <element name="getSelectedCarsPriceReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendCarPrice">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendCarPriceResponse">
+    <complexType>
+     <sequence>
+      <element name="sendCarPriceReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buyCar">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buyCarResponse">
+    <complexType>
+     <sequence>
+      <element name="buyCarReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="rentVehicule">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+      <element name="employeeID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="rentVehiculeResponse">
+    <complexType>
+     <sequence>
+      <element name="rentVehiculeReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addCar">
+    <complexType>
+     <sequence>
+      <element name="model" type="xsd:string"/>
+      <element name="price" type="xsd:int"/>
+      <element name="pricelocation" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addCarResponse">
+    <complexType>
+     <sequence>
+      <element name="addCarReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="rentVehiculeResponse">
+
+      <wsdl:part element="impl:rentVehiculeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buyCarResponse">
+
+      <wsdl:part element="impl:buyCarResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSelectedCarsModelRequest">
+
+      <wsdl:part element="impl:getSelectedCarsModel" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSelectedCarsPriceRequest">
+
+      <wsdl:part element="impl:getSelectedCarsPrice" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSelectedCarsHBRRequest">
+
+      <wsdl:part element="impl:getSelectedCarsHBR" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendCarPriceRequest">
+
+      <wsdl:part element="impl:sendCarPrice" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buyCarRequest">
+
+      <wsdl:part element="impl:buyCar" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendCarPriceResponse">
+
+      <wsdl:part element="impl:sendCarPriceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addCarResponse">
+
+      <wsdl:part element="impl:addCarResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSelectedCarsPriceResponse">
+
+      <wsdl:part element="impl:getSelectedCarsPriceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSelectedCarsModelResponse">
+
+      <wsdl:part element="impl:getSelectedCarsModelResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSelectedCarsHBRResponse">
+
+      <wsdl:part element="impl:getSelectedCarsHBRResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addCarRequest">
+
+      <wsdl:part element="impl:addCar" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="rentVehiculeRequest">
+
+      <wsdl:part element="impl:rentVehicule" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="RentCarsGateway">
+
+      <wsdl:operation name="getSelectedCarsHBR">
+
+         <wsdl:input message="impl:getSelectedCarsHBRRequest" name="getSelectedCarsHBRRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getSelectedCarsHBRResponse" name="getSelectedCarsHBRResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSelectedCarsModel">
+
+         <wsdl:input message="impl:getSelectedCarsModelRequest" name="getSelectedCarsModelRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getSelectedCarsModelResponse" name="getSelectedCarsModelResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSelectedCarsPrice">
+
+         <wsdl:input message="impl:getSelectedCarsPriceRequest" name="getSelectedCarsPriceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getSelectedCarsPriceResponse" name="getSelectedCarsPriceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendCarPrice">
+
+         <wsdl:input message="impl:sendCarPriceRequest" name="sendCarPriceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sendCarPriceResponse" name="sendCarPriceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buyCar">
+
+         <wsdl:input message="impl:buyCarRequest" name="buyCarRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buyCarResponse" name="buyCarResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="rentVehicule">
+
+         <wsdl:input message="impl:rentVehiculeRequest" name="rentVehiculeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:rentVehiculeResponse" name="rentVehiculeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addCar">
+
+         <wsdl:input message="impl:addCarRequest" name="addCarRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addCarResponse" name="addCarResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="RentCarsGatewaySoapBinding" type="impl:RentCarsGateway">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getSelectedCarsHBR">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSelectedCarsHBRRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSelectedCarsHBRResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSelectedCarsModel">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSelectedCarsModelRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSelectedCarsModelResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSelectedCarsPrice">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSelectedCarsPriceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSelectedCarsPriceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendCarPrice">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendCarPriceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendCarPriceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buyCar">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buyCarRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buyCarResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="rentVehicule">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="rentVehiculeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="rentVehiculeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addCar">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addCarRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addCarResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="RentCarsGatewayService">
+
+      <wsdl:port binding="impl:RentCarsGatewaySoapBinding" name="RentCarsGateway">
+
+         <wsdlsoap:address location="http://localhost:8080/RentCarsUPEMSoap/services/RentCarsGateway"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,1052 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://bank.upem.fr" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://bank.upem.fr" xmlns:intf="http://bank.upem.fr" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://bank.upem.fr" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="convert">
+    <complexType>
+     <sequence>
+      <element name="cur1" type="xsd:string"/>
+      <element name="cur2" type="xsd:string"/>
+      <element name="amount" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="convertResponse">
+    <complexType>
+     <sequence>
+      <element name="convertReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getFirstName">
+    <complexType/>
+   </element>
+   <element name="getFirstNameResponse">
+    <complexType>
+     <sequence>
+      <element name="getFirstNameReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getMail">
+    <complexType/>
+   </element>
+   <element name="getMailResponse">
+    <complexType>
+     <sequence>
+      <element name="getMailReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setMail">
+    <complexType>
+     <sequence>
+      <element name="mail" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setMailResponse">
+    <complexType/>
+   </element>
+   <element name="setFirstName">
+    <complexType>
+     <sequence>
+      <element name="firstName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setFirstNameResponse">
+    <complexType/>
+   </element>
+   <element name="setAdress">
+    <complexType>
+     <sequence>
+      <element name="adress" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setAdressResponse">
+    <complexType/>
+   </element>
+   <element name="setLastName">
+    <complexType>
+     <sequence>
+      <element name="lastName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setLastNameResponse">
+    <complexType/>
+   </element>
+   <element name="getPhoneNumber">
+    <complexType/>
+   </element>
+   <element name="getPhoneNumberResponse">
+    <complexType>
+     <sequence>
+      <element name="getPhoneNumberReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setPhoneNumber">
+    <complexType>
+     <sequence>
+      <element name="phoneNumber" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setPhoneNumberResponse">
+    <complexType/>
+   </element>
+   <element name="deposit">
+    <complexType>
+     <sequence>
+      <element name="amount" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="depositResponse">
+    <complexType>
+     <sequence>
+      <element name="depositReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAdress">
+    <complexType/>
+   </element>
+   <element name="getAdressResponse">
+    <complexType>
+     <sequence>
+      <element name="getAdressReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getLastName">
+    <complexType/>
+   </element>
+   <element name="getLastNameResponse">
+    <complexType>
+     <sequence>
+      <element name="getLastNameReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getBalance">
+    <complexType/>
+   </element>
+   <element name="getBalanceResponse">
+    <complexType>
+     <sequence>
+      <element name="getBalanceReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getPassword">
+    <complexType/>
+   </element>
+   <element name="getPasswordResponse">
+    <complexType>
+     <sequence>
+      <element name="getPasswordReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCurrency">
+    <complexType/>
+   </element>
+   <element name="getCurrencyResponse">
+    <complexType>
+     <sequence>
+      <element name="getCurrencyReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setCurrency">
+    <complexType>
+     <sequence>
+      <element name="currency" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setCurrencyResponse">
+    <complexType/>
+   </element>
+   <element name="withdraw">
+    <complexType>
+     <sequence>
+      <element name="amount" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="withdrawResponse">
+    <complexType>
+     <sequence>
+      <element name="withdrawReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setPassword">
+    <complexType>
+     <sequence>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setPasswordResponse">
+    <complexType/>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getPhoneNumberRequest">
+
+      <wsdl:part element="impl:getPhoneNumber" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPasswordRequest">
+
+      <wsdl:part element="impl:getPassword" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="withdrawRequest">
+
+      <wsdl:part element="impl:withdraw" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPhoneNumberResponse">
+
+      <wsdl:part element="impl:getPhoneNumberResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setMailResponse">
+
+      <wsdl:part element="impl:setMailResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getFirstNameResponse">
+
+      <wsdl:part element="impl:getFirstNameResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setAdressRequest">
+
+      <wsdl:part element="impl:setAdress" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="convertRequest">
+
+      <wsdl:part element="impl:convert" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCurrencyRequest">
+
+      <wsdl:part element="impl:getCurrency" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setLastNameResponse">
+
+      <wsdl:part element="impl:setLastNameResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="depositRequest">
+
+      <wsdl:part element="impl:deposit" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getLastNameRequest">
+
+      <wsdl:part element="impl:getLastName" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getMailResponse">
+
+      <wsdl:part element="impl:getMailResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getMailRequest">
+
+      <wsdl:part element="impl:getMail" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="depositResponse">
+
+      <wsdl:part element="impl:depositResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="withdrawResponse">
+
+      <wsdl:part element="impl:withdrawResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setFirstNameResponse">
+
+      <wsdl:part element="impl:setFirstNameResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setMailRequest">
+
+      <wsdl:part element="impl:setMail" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBalanceRequest">
+
+      <wsdl:part element="impl:getBalance" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setCurrencyRequest">
+
+      <wsdl:part element="impl:setCurrency" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setPhoneNumberResponse">
+
+      <wsdl:part element="impl:setPhoneNumberResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdressRequest">
+
+      <wsdl:part element="impl:getAdress" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="convertResponse">
+
+      <wsdl:part element="impl:convertResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setFirstNameRequest">
+
+      <wsdl:part element="impl:setFirstName" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdressResponse">
+
+      <wsdl:part element="impl:getAdressResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getLastNameResponse">
+
+      <wsdl:part element="impl:getLastNameResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getFirstNameRequest">
+
+      <wsdl:part element="impl:getFirstName" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setLastNameRequest">
+
+      <wsdl:part element="impl:setLastName" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBalanceResponse">
+
+      <wsdl:part element="impl:getBalanceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPasswordResponse">
+
+      <wsdl:part element="impl:getPasswordResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setPasswordResponse">
+
+      <wsdl:part element="impl:setPasswordResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCurrencyResponse">
+
+      <wsdl:part element="impl:getCurrencyResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setCurrencyResponse">
+
+      <wsdl:part element="impl:setCurrencyResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setPasswordRequest">
+
+      <wsdl:part element="impl:setPassword" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setAdressResponse">
+
+      <wsdl:part element="impl:setAdressResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setPhoneNumberRequest">
+
+      <wsdl:part element="impl:setPhoneNumber" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Account">
+
+      <wsdl:operation name="convert">
+
+         <wsdl:input message="impl:convertRequest" name="convertRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:convertResponse" name="convertResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getFirstName">
+
+         <wsdl:input message="impl:getFirstNameRequest" name="getFirstNameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getFirstNameResponse" name="getFirstNameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMail">
+
+         <wsdl:input message="impl:getMailRequest" name="getMailRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getMailResponse" name="getMailResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setMail">
+
+         <wsdl:input message="impl:setMailRequest" name="setMailRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setMailResponse" name="setMailResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setFirstName">
+
+         <wsdl:input message="impl:setFirstNameRequest" name="setFirstNameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setFirstNameResponse" name="setFirstNameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setAdress">
+
+         <wsdl:input message="impl:setAdressRequest" name="setAdressRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setAdressResponse" name="setAdressResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setLastName">
+
+         <wsdl:input message="impl:setLastNameRequest" name="setLastNameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setLastNameResponse" name="setLastNameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPhoneNumber">
+
+         <wsdl:input message="impl:getPhoneNumberRequest" name="getPhoneNumberRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPhoneNumberResponse" name="getPhoneNumberResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPhoneNumber">
+
+         <wsdl:input message="impl:setPhoneNumberRequest" name="setPhoneNumberRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setPhoneNumberResponse" name="setPhoneNumberResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deposit">
+
+         <wsdl:input message="impl:depositRequest" name="depositRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:depositResponse" name="depositResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdress">
+
+         <wsdl:input message="impl:getAdressRequest" name="getAdressRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAdressResponse" name="getAdressResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getLastName">
+
+         <wsdl:input message="impl:getLastNameRequest" name="getLastNameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getLastNameResponse" name="getLastNameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBalance">
+
+         <wsdl:input message="impl:getBalanceRequest" name="getBalanceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getBalanceResponse" name="getBalanceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPassword">
+
+         <wsdl:input message="impl:getPasswordRequest" name="getPasswordRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPasswordResponse" name="getPasswordResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCurrency">
+
+         <wsdl:input message="impl:getCurrencyRequest" name="getCurrencyRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getCurrencyResponse" name="getCurrencyResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setCurrency">
+
+         <wsdl:input message="impl:setCurrencyRequest" name="setCurrencyRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setCurrencyResponse" name="setCurrencyResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="withdraw">
+
+         <wsdl:input message="impl:withdrawRequest" name="withdrawRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:withdrawResponse" name="withdrawResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPassword">
+
+         <wsdl:input message="impl:setPasswordRequest" name="setPasswordRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setPasswordResponse" name="setPasswordResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AccountSoapBinding" type="impl:Account">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="convert">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="convertRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="convertResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getFirstName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getFirstNameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getFirstNameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getMail">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getMailRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getMailResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setMail">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setMailRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setMailResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setFirstName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setFirstNameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setFirstNameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setAdress">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setAdressRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setAdressResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setLastName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setLastNameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setLastNameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPhoneNumber">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPhoneNumberRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPhoneNumberResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPhoneNumber">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setPhoneNumberRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setPhoneNumberResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deposit">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="depositRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="depositResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdress">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAdressRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAdressResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getLastName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getLastNameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getLastNameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBalance">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getBalanceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getBalanceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPassword">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPasswordRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPasswordResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCurrency">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCurrencyRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCurrencyResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setCurrency">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setCurrencyRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setCurrencyResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="withdraw">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="withdrawRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="withdrawResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPassword">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setPasswordRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setPasswordResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AccountService">
+
+      <wsdl:port binding="impl:AccountSoapBinding" name="Account">
+
+         <wsdlsoap:address location="http://tempuri.org/WebBank/services/Account"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
