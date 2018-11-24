@@ -152,7 +152,7 @@ public class CarService{
 
 	}
 
-	public boolean buyCar(int carID,String email,String password) throws RemoteException {
+	public boolean buyCar(int userID,String email,String password) throws RemoteException {
 		
 	
 		try {
@@ -162,12 +162,16 @@ public class CarService{
 		
 			if (r instanceof ICars) {
 				System.out.println("la");
-				if(service.withdrawMoney(email, password, ((ICars) r).sendCarPrice(carID))) {
-					System.out.println("ouais");
-					((ICars) r).buyCar(carID);
-					return true;
+				User u = users.get(userID);
+				for(int carID : u.getBasket() ) {
+					if(service.withdrawMoney(email, password, ((ICars) r).sendCarPrice(carID))) {
+						System.out.println("ouais");
+						((ICars) r).buyCar(carID);
+						return true;
 
+					}
 				}
+				
 
 
 			}
