@@ -36,7 +36,7 @@ public class Users {
 		users.put(nextID++,new User(nextID,firstName, lastName, password, mail));
 		return true;
 	}
-	
+	/*
 	public CarSquelleton[] getUserShoppingCart(int userID) throws RemoteException, MalformedURLException, NotBoundException {
 		Integer[] shoppingCart = users.get(userID).getBasket();
 		ICars s = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
@@ -51,4 +51,5 @@ public class Users {
 		}
 		return tabCars;	
 	}
+	*/
 }

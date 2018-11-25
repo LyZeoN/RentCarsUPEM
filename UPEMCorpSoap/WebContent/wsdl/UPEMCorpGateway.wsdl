@@ -4,6 +4,23 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://buy" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="add">
+    <complexType>
+     <sequence>
+      <element name="firstName" type="xsd:string"/>
+      <element name="lastName" type="xsd:string"/>
+      <element name="mail" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addResponse">
+    <complexType>
+     <sequence>
+      <element name="addReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="connection">
     <complexType>
      <sequence>
@@ -15,7 +32,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="connectionResponse">
     <complexType>
      <sequence>
-      <element name="connectionReturn" type="xsd:boolean"/>
+      <element name="connectionReturn" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
@@ -30,25 +47,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="notifyUserResponse">
     <complexType/>
    </element>
-   <element name="getEmployees">
-    <complexType/>
-   </element>
-   <element name="getEmployeesResponse">
-    <complexType>
-     <sequence>
-      <element maxOccurs="unbounded" name="getEmployeesReturn" type="impl:Employee"/>
-     </sequence>
-    </complexType>
-   </element>
-   <complexType name="Employee">
-    <sequence>
-     <element name="firstName" nillable="true" type="xsd:string"/>
-     <element name="id" type="xsd:int"/>
-     <element name="lastName" nillable="true" type="xsd:string"/>
-     <element name="mail" nillable="true" type="xsd:string"/>
-     <element name="password" nillable="true" type="xsd:string"/>
-    </sequence>
-   </complexType>
    <element name="getEmployee">
     <complexType>
      <sequence>
@@ -63,20 +61,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="add">
-    <complexType>
-     <sequence>
-      <element name="firstName" type="xsd:string"/>
-      <element name="lastName" type="xsd:string"/>
-      <element name="mail" type="xsd:string"/>
-      <element name="password" type="xsd:string"/>
-     </sequence>
-    </complexType>
+   <complexType name="Employee">
+    <sequence>
+     <element name="firstName" nillable="true" type="xsd:string"/>
+     <element name="id" type="xsd:int"/>
+     <element name="lastName" nillable="true" type="xsd:string"/>
+     <element name="mail" nillable="true" type="xsd:string"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="getEmployees">
+    <complexType/>
    </element>
-   <element name="addResponse">
+   <element name="getEmployeesResponse">
     <complexType>
      <sequence>
-      <element name="addReturn" type="xsd:boolean"/>
+      <element maxOccurs="unbounded" name="getEmployeesReturn" type="impl:Employee"/>
      </sequence>
     </complexType>
    </element>
@@ -165,6 +165,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:portType name="UPEMCorpGateway">
 
+      <wsdl:operation name="add">
+
+         <wsdl:input message="impl:addRequest" name="addRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addResponse" name="addResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="connection">
 
          <wsdl:input message="impl:connectionRequest" name="connectionRequest">
@@ -189,18 +201,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getEmployees">
-
-         <wsdl:input message="impl:getEmployeesRequest" name="getEmployeesRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getEmployeesResponse" name="getEmployeesResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="getEmployee">
 
          <wsdl:input message="impl:getEmployeeRequest" name="getEmployeeRequest">
@@ -213,13 +213,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="add">
+      <wsdl:operation name="getEmployees">
 
-         <wsdl:input message="impl:addRequest" name="addRequest">
+         <wsdl:input message="impl:getEmployeesRequest" name="getEmployeesRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:addResponse" name="addResponse">
+         <wsdl:output message="impl:getEmployeesResponse" name="getEmployeesResponse">
 
        </wsdl:output>
 
@@ -230,6 +230,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:binding name="UPEMCorpGatewaySoapBinding" type="impl:UPEMCorpGateway">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="add">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
 
       <wsdl:operation name="connection">
 
@@ -267,24 +285,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getEmployees">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getEmployeesRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getEmployeesResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="getEmployee">
 
          <wsdlsoap:operation soapAction=""/>
@@ -303,17 +303,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="add">
+      <wsdl:operation name="getEmployees">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="addRequest">
+         <wsdl:input name="getEmployeesRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="addResponse">
+         <wsdl:output name="getEmployeesResponse">
 
             <wsdlsoap:body use="literal"/>
 
