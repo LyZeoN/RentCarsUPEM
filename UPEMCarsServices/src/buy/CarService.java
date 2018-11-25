@@ -105,7 +105,6 @@ public class CarService {
 
 	public boolean addArticleHistory(String model, double price, int haveBeenRented, int userID)
 			throws RemoteException {
-		System.out.println("dans historey");
 		User user = users.get(userID);
 		if (user == null)
 			return false;
@@ -125,7 +124,6 @@ public class CarService {
 		for (int i = 0; i < r.getCars().length; i++) {
 
 			List<ObservationSquelleton> obs = new ArrayList<ObservationSquelleton>();
-			System.out.println("ouaip" + allCars[i].getStatus().size());
 
 			if (allCars[i].getStatus().size() == 0) {
 				toSend[i] = new CarSquelleton(null, r.getCars()[i].getID(), r.getCars()[i].getModel(),
@@ -164,20 +162,16 @@ public class CarService {
 		Bank service = new BankServiceLocator().getBank();
 		((BankSoapBindingStub) service).setMaintainSession(true);
 		User u = users.get(userID);
-		System.out.println("icfds");
 		for (int carID : u.getBasket()) {
 			System.out.println(carID);
 			if (service.withdrawMoney(email, password, ((ICars) r).sendCarPrice(carID))) {
-				System.out.println("igdfggfds" + carID);
 				addArticleHistory(r.getSelectedCarsModel(carID), r.getSelectedCarsPrice(carID), r.getSelectedCarsHBR(carID), userID);
 				if (!r.buyCar(carID)) {
 					return false;
 				}
-				System.out.println("lv");
 			}
 			
 		}
-		System.out.println("rturn");
 		u.freeBasket();
 		return true;
 	}
