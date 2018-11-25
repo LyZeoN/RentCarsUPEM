@@ -3,10 +3,8 @@ package buy;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class RentCarsGateway {
 

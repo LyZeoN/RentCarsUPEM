@@ -46,13 +46,19 @@ public class User {
 	}
 
 	public Integer[] getBasket() {
-		return (Integer[]) basket.toArray();
+		Integer[] bas = new Integer[basket.size()];
+		for (int i = 0; i <= basket.size(); i++) {
+			bas[i] = basket.get(i);
+		}
+		return bas;
 	}
 
-
-
 	public CarSquelleton[] getHistory() {
-		return (CarSquelleton[]) history.toArray();
+		CarSquelleton[] his = new CarSquelleton[history.size()];
+		for (int i = 0; i <= history.size(); i++) {
+			his[i] = history.get(i);
+		}
+		return his;
 	}
 
 

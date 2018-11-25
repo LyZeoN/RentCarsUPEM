@@ -36,7 +36,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     </complexType>
    </element>
    <complexType name="CarSquelleton">
-    <sequence/>
+    <sequence>
+     <element name="globalMark" type="xsd:int"/>
+     <element name="haveBeenRented" type="xsd:int"/>
+     <element name="id" type="xsd:int"/>
+     <element name="model" nillable="true" type="xsd:string"/>
+     <element name="price" type="xsd:double"/>
+     <element name="pricelocation" type="xsd:double"/>
+    </sequence>
    </complexType>
    <element name="getUserHistory">
     <complexType>

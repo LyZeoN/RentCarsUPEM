@@ -38,16 +38,16 @@ public class Users {
 	}
 	
 	public CarSquelleton[] getUserShoppingCart(int userID) throws RemoteException, MalformedURLException, NotBoundException {
-		
-		ArrayList<CarSquelleton> tabCars = new ArrayList<CarSquelleton>();
 		Integer[] shoppingCart = users.get(userID).getBasket();
 		ICars s = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
+		CarSquelleton[] tabCars = new CarSquelleton[s.getCars().length];
+		int i = 0;
 		for(int carID : shoppingCart) {
 			int haveBeenRented = s.getSelectedCarsHBR(carID);
 			String model = s.getSelectedCarsModel(carID);
 			double price = s.getSelectedCarsPrice(carID);
-			tabCars.add(new CarSquelleton(carID, model,price,haveBeenRented));
+			tabCars[i] = new CarSquelleton(carID, model,price,haveBeenRented);
 		}
-		return (CarSquelleton[]) tabCars.toArray();	
+		return tabCars;	
 	}
 }
