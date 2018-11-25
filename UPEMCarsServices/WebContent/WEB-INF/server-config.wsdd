@@ -73,7 +73,9 @@
   <ns1:parameter name="schemaQualified" value="http://buy"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://buy"/>
   <ns1:parameter name="wsdlServiceElement" value="CarServiceService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns9:CarSquelleton" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:buy.CarSquelleton" xmlns:ns9="http://buy"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns9:CarSquelleton" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:buy.CarSquelleton" xmlns:ns9="http://buy"/><ns1:parameter
+  	name="scope" value="application">
+</ns1:parameter>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>
