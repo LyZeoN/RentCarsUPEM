@@ -70,6 +70,9 @@ public class User {
 		basket.add(id);
 		
 	}
+	public void freeBasket() {
+		basket.clear();
+	}
 	public int getID() {
 		return id;
 	}

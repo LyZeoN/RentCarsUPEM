@@ -79,7 +79,7 @@ public class Cars extends UnicastRemoteObject implements ICars {
 
 
 	public boolean buyCar(int id) throws RemoteException {
-
+		nextID --;
 		return allCars.remove(id) == null ? false : true;
 	}
 
