@@ -16,14 +16,13 @@ public class CarSquelleton{
 		this.pricelocation = -1;
 		this.globalMark = -1;
 	}
-	public CarSquelleton(int idi,String model, double price, double pricelocation) throws RemoteException {
+	public CarSquelleton(int idi,String model, double price, double pricelocation,int haveBeenRented) throws RemoteException {
 		id = idi;
 		this.model = model;
 		this.price = price;
 		this.pricelocation = pricelocation;
 		this.globalMark = 10;
-
-		
+		this.haveBeenRented = haveBeenRented;
 	}
 	public int getId() {
 		return id;

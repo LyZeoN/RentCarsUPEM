@@ -46,7 +46,8 @@ public class CarService{
 			int haveBeenRented = s.getSelectedCarsHBR(carID);
 			String model = s.getSelectedCarsModel(carID);
 			double price = s.getSelectedCarsPrice(carID);
-			tabCars[i] = new CarSquelleton(carID, model,price,haveBeenRented);
+			double pricelocation = s.getSelectedCarsPriceLocation(carID);
+			tabCars[i] = new CarSquelleton(carID, model,price,pricelocation,haveBeenRented);
 			i++;
 		}
 		return tabCars;
@@ -80,7 +81,7 @@ public class CarService{
 			ICars r = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
 			CarSquelleton[] toSend = new CarSquelleton[r.getCars().length];
 			for(int i = 0;i < r.getCars().length;i++) {
-				toSend[i] = new CarSquelleton(r.getCars()[i].getID(), r.getCars()[i].getModel(), r.getCars()[i].getPrice(), r.getCars()[i].getHaveBeenRented());
+				toSend[i] = new CarSquelleton(r.getCars()[i].getID(), r.getCars()[i].getModel(), r.getCars()[i].getPrice(),r.getCars()[i].getPricelocation(), r.getCars()[i].getHaveBeenRented());
 			}
 			return toSend;
 

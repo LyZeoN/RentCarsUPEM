@@ -71,7 +71,7 @@ public class User {
 		
 	}
 	public void addArticleHistory(String model,double price,int haveBeenRented) throws RemoteException {
-		history.add(new CarSquelleton(0, model,price,haveBeenRented));
+		history.add(new CarSquelleton(0, model,price,0,haveBeenRented));
 	}
 
 	

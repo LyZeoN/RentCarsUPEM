@@ -46,7 +46,8 @@ public class Users {
 			int haveBeenRented = s.getSelectedCarsHBR(carID);
 			String model = s.getSelectedCarsModel(carID);
 			double price = s.getSelectedCarsPrice(carID);
-			tabCars[i] = new CarSquelleton(carID, model,price,haveBeenRented);
+			double pricelocation = s.getSelectedCarsPriceLocation(carID);
+			tabCars[i] = new CarSquelleton(carID, model,price,pricelocation,haveBeenRented);
 		}
 		return tabCars;	
 	}

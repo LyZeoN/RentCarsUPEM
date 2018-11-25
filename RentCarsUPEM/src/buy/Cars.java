@@ -45,6 +45,10 @@ public class Cars extends UnicastRemoteObject implements ICars {
 	public int getSelectedCarsHBR(int carID) throws RemoteException {
 		return allCars.get(carID).getHaveBeenRented();
 	}
+	
+	public double getSelectedCarsPriceLocation(int carID) throws RemoteException {
+		return allCars.get(carID).getPricelocation();
+	}
 
 	public boolean addCar(String model, int price, int pricelocation) throws RemoteException {
 		allCars.put(nextID++, new Car(nextID, model, price, pricelocation));
