@@ -1,5 +1,7 @@
 package buy;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CarSquelleton{
 	int id;
@@ -8,7 +10,7 @@ public class CarSquelleton{
 	private double pricelocation;
 	private int globalMark;
 	private int haveBeenRented = 0;
-
+	private ObservationSquelleton[] observations;
 	public CarSquelleton() {
 		id = -1;
 		this.model = "";
@@ -16,13 +18,14 @@ public class CarSquelleton{
 		this.pricelocation = -1;
 		this.globalMark = -1;
 	}
-	public CarSquelleton(int idi,String model, double price, double pricelocation,int haveBeenRented) throws RemoteException {
+	public CarSquelleton(ObservationSquelleton[] observationsi,int idi,String model, double price, double pricelocation,int haveBeenRented) throws RemoteException {
 		id = idi;
 		this.model = model;
 		this.price = price;
 		this.pricelocation = pricelocation;
 		this.globalMark = 10;
 		this.haveBeenRented = haveBeenRented;
+		this.observations = observationsi;
 	}
 	public int getId() {
 		return id;
@@ -56,6 +59,9 @@ public class CarSquelleton{
 	}
 	public String getModel() {
 		return model;
+	}
+	public ObservationSquelleton[] getOsb() {
+		return observations;
 	}
 
 }

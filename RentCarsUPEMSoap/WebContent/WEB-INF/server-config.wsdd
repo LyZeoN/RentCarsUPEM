@@ -33,32 +33,32 @@
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
  <ns1:service name="RentCarsGateway" provider="java:RPC" style="wrapped" use="literal">
-  <ns2:operation name="rentVehicule" qname="ns1:rentVehicule" returnQName="ns1:rentVehiculeReturn" returnType="xsd:boolean" soapAction="" xmlns:ns1="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
-   <ns2:parameter qname="ns1:id" type="xsd:int"/>
-   <ns2:parameter qname="ns1:employeeID" type="xsd:int"/>
+  <ns2:operation name="getSelectedCarsHBR" qname="ns1:getSelectedCarsHBR" returnQName="ns1:getSelectedCarsHBRReturn" returnType="xsd:int" soapAction="" xmlns:ns1="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:carID" type="xsd:int"/>
   </ns2:operation>
-  <ns1:operation name="addCar" qname="ns2:addCar" returnQName="ns2:addCarReturn" returnType="xsd:boolean" soapAction="" xmlns:ns2="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns2:model" type="xsd:string"/>
-   <ns1:parameter qname="ns2:price" type="xsd:int"/>
-   <ns1:parameter qname="ns2:pricelocation" type="xsd:int"/>
+  <ns1:operation name="getSelectedCarsPrice" qname="ns2:getSelectedCarsPrice" returnQName="ns2:getSelectedCarsPriceReturn" returnType="xsd:double" soapAction="" xmlns:ns2="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:carID" type="xsd:int"/>
   </ns1:operation>
-  <ns1:operation name="buyCar" qname="ns3:buyCar" returnQName="ns3:buyCarReturn" returnType="xsd:boolean" soapAction="" xmlns:ns3="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns3:id" type="xsd:int"/>
+  <ns1:operation name="getSelectedCarsModel" qname="ns3:getSelectedCarsModel" returnQName="ns3:getSelectedCarsModelReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:carID" type="xsd:int"/>
   </ns1:operation>
-  <ns1:operation name="sendCarPrice" qname="ns4:sendCarPrice" returnQName="ns4:sendCarPriceReturn" returnType="xsd:double" soapAction="" xmlns:ns4="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns4:id" type="xsd:int"/>
+  <ns1:operation name="addCar" qname="ns4:addCar" returnQName="ns4:addCarReturn" returnType="xsd:boolean" soapAction="" xmlns:ns4="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:model" type="xsd:string"/>
+   <ns1:parameter qname="ns4:price" type="xsd:int"/>
+   <ns1:parameter qname="ns4:pricelocation" type="xsd:int"/>
   </ns1:operation>
-  <ns1:operation name="getSelectedCarsModel" qname="ns5:getSelectedCarsModel" returnQName="ns5:getSelectedCarsModelReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns5:carID" type="xsd:int"/>
+  <ns1:operation name="rentVehicule" qname="ns5:rentVehicule" returnQName="ns5:rentVehiculeReturn" returnType="xsd:boolean" soapAction="" xmlns:ns5="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:id" type="xsd:int"/>
+   <ns1:parameter qname="ns5:employeeID" type="xsd:int"/>
   </ns1:operation>
-  <ns1:operation name="getCars" qname="ns6:getCars" returnQName="ns6:getCarsReturn" returnType="ns6:Car" soapAction="" xmlns:ns6="http://buy"/>
-  <ns1:operation name="getSelectedCarsPrice" qname="ns7:getSelectedCarsPrice" returnQName="ns7:getSelectedCarsPriceReturn" returnType="xsd:double" soapAction="" xmlns:ns7="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns7:carID" type="xsd:int"/>
+  <ns1:operation name="buyCar" qname="ns6:buyCar" returnQName="ns6:buyCarReturn" returnType="xsd:boolean" soapAction="" xmlns:ns6="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:id" type="xsd:int"/>
   </ns1:operation>
-  <ns1:operation name="getSelectedCarsHBR" qname="ns8:getSelectedCarsHBR" returnQName="ns8:getSelectedCarsHBRReturn" returnType="xsd:int" soapAction="" xmlns:ns8="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns8:carID" type="xsd:int"/>
+  <ns1:operation name="getCars" qname="ns7:getCars" returnQName="ns7:getCarsReturn" returnType="ns7:Car" soapAction="" xmlns:ns7="http://buy"/>
+  <ns1:operation name="sendCarPrice" qname="ns8:sendCarPrice" returnQName="ns8:sendCarPriceReturn" returnType="xsd:double" soapAction="" xmlns:ns8="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns8:id" type="xsd:int"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="addCar getCars getSelectedCarsPrice getSelectedCarsHBR rentVehicule buyCar sendCarPrice getSelectedCarsModel"/>
+  <ns1:parameter name="allowedMethods" value="addCar getSelectedCarsPrice getCars getSelectedCarsHBR rentVehicule buyCar getSelectedCarsModel sendCarPrice"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="RentCarsGateway"/>
   <ns1:parameter name="className" value="buy.RentCarsGateway"/>

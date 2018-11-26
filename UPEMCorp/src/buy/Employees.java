@@ -14,24 +14,26 @@ public class Employees extends UnicastRemoteObject implements IEmployees{
 		super();
 	}
 	
-	public boolean connection(String mail, String password) throws RemoteException{
+	public int connection(String mail, String password) throws RemoteException{
 		for (IEmployee e : employees.values()) {
 			if (e.getMail().equals(mail) && e.getPassword().equals(password)){
-				return true;
+				return e.getID();
 			}
 		}
-		return false;
+		return -1;
 	}
 	
 	
-	public boolean add(String firstName, String lastName, String mail, String password) throws RemoteException{
+	public int add(String firstName, String lastName, String mail, String password) throws RemoteException{
 		for (IEmployee e : employees.values()) {
 			if (e.getMail().equals(mail)) {
-				return false;
+				return -1;
 			}
 		}
-		employees.put(nextID++,new Employee(nextID,firstName, lastName, password, mail));
-		return true;
+		employees.put(nextID,new Employee(nextID,firstName, lastName, password, mail));
+		nextID++;
+
+		return nextID - 1 ;
 	}
 	
 	public IEmployee[] getEmployees() throws RemoteException{

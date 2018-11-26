@@ -11,12 +11,12 @@ import java.util.List;
 public class UPEMCorpGateway{
 
 	
-	public boolean connection(String mail, String password) throws RemoteException, MalformedURLException, NotBoundException {
+	public int connection(String mail, String password) throws RemoteException, MalformedURLException, NotBoundException {
 		IEmployees r = (IEmployees) Naming.lookup("rmi://localhost:2020/UPEMCorp");
 		return r.connection(mail, password);
 	}
 	
-	public boolean add(String firstName, String lastName, String mail, String password) throws RemoteException, MalformedURLException, NotBoundException {
+	public int add(String firstName, String lastName, String mail, String password) throws RemoteException, MalformedURLException, NotBoundException {
 		IEmployees r = (IEmployees) Naming.lookup("rmi://localhost:2020/UPEMCorp");
 		return r.add(firstName, lastName, mail, password);
 	}

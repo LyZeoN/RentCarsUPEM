@@ -47,7 +47,7 @@ public class User {
 
 	public Integer[] getBasket() {
 		Integer[] bas = new Integer[basket.size()];
-		for (int i = 0; i <= basket.size(); i++) {
+		for (int i = 0; i < basket.size(); i++) {
 			bas[i] = basket.get(i);
 		}
 		return bas;
@@ -55,7 +55,7 @@ public class User {
 
 	public CarSquelleton[] getHistory() {
 		CarSquelleton[] his = new CarSquelleton[history.size()];
-		for (int i = 0; i <= history.size(); i++) {
+		for (int i = 0; i < history.size(); i++) {
 			his[i] = history.get(i);
 		}
 		return his;
@@ -70,8 +70,14 @@ public class User {
 		basket.add(id);
 		
 	}
+	public void freeBasket() {
+		basket.clear();
+	}
+	public int getID() {
+		return id;
+	}
 	public void addArticleHistory(String model,double price,int haveBeenRented) throws RemoteException {
-		history.add(new CarSquelleton(0, model,price,0,haveBeenRented));
+		history.add(new CarSquelleton(new ObservationSquelleton[1],0, model,price,0,haveBeenRented));
 	}
 
 	

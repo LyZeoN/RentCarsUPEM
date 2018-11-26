@@ -8,6 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -19,12 +20,13 @@ public class Car extends UnicastRemoteObject implements ICar{
 	private int globalMark;
 	private int haveBeenRented = 0;
 	private Optional<Integer> renter;
-	private HashMap <Integer,List<IObservation>> status;
+	private Map <Integer,IObservation> status = new HashMap<Integer,IObservation>();
 	private List<Integer> waitingQueue;
+	private int gone = 0;
 
 	public Car(int idi,String model, double price, double pricelocation) throws RemoteException {
 		id = idi;
-		this.status = new HashMap<>();
+		
 		this.waitingQueue = new ArrayList<>();
 		this.model = model;
 		this.price = price;
@@ -34,8 +36,14 @@ public class Car extends UnicastRemoteObject implements ICar{
 		
 	}
 	
-	public HashMap<Integer, List<IObservation>> getStatus() throws RemoteException {
+	public Map<Integer, IObservation> getStatus() throws RemoteException {
 		return status;
+	}
+	public void setGone(int e) throws RemoteException{
+		gone = e;
+	}
+	public int getGone() throws RemoteException{
+		return gone;
 	}
 
 	public double getPricelocation() throws RemoteException {
@@ -80,14 +88,14 @@ public class Car extends UnicastRemoteObject implements ICar{
 	public void setGlobalMark() throws RemoteException {
 		globalMark = 0;
 		int cmp = 0;
-		for(List<IObservation> list : status.values()) {
-			for(IObservation observation : list) {
+	
+			for(IObservation observation : status.values()) {
 				for (IStatus status : observation.getComponents().values()) {
 					globalMark = globalMark + status.getMark();
 					cmp ++;
 				}
 			}
-		}
+		
 		globalMark /= cmp;
 
 	}
@@ -97,7 +105,16 @@ public class Car extends UnicastRemoteObject implements ICar{
 	}
 	
 	public void addStatus(int employee, int carroserieMark,String carroserieDescription, int moteurMark,String moteurDescription, int roueMark,String roueDescription) throws RemoteException {
-		status.get(employee).add(new Observation(carroserieMark,carroserieDescription,moteurMark,moteurDescription,roueMark,roueDescription));
+		if(status.containsKey(employee)) {
+			status.remove(employee);
+			status.put(employee,new Observation(carroserieMark,carroserieDescription,moteurMark,moteurDescription,roueMark,roueDescription));
+
+		}
+		else {
+			status.put(employee,new Observation(carroserieMark,carroserieDescription,moteurMark,moteurDescription,roueMark,roueDescription));
+
+			
+		}
 	}
 
 	public boolean freeMe() throws RemoteException, MalformedURLException, NotBoundException{

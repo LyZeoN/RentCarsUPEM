@@ -18,5 +18,8 @@ public interface ICars extends Remote {
 	public double getSelectedCarsPrice(int carID) throws RemoteException;
 	public int getSelectedCarsHBR(int carID) throws RemoteException;
 	public double getSelectedCarsPriceLocation(int carID) throws RemoteException;
-	
+	public IObservation[] getObs(int carID) throws RemoteException;
+	public Integer[] getUsersObsID(int carID) throws RemoteException;
+	public void addObservation(int userID,int carID,int carroserieMark, String carroserieDescription,int moteurMark, String moteurDescription, int roueMark, String roueDescription) throws RemoteException;
+	public int getCarGone(int id) throws RemoteException;
 }

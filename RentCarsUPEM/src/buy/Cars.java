@@ -27,9 +27,16 @@ public class Cars extends UnicastRemoteObject implements ICars {
 	}
 
 	public ICar[] getCars() throws RemoteException {
-		ICar[] acc = new ICar[allCars.size()];
-		for (int i = 0; i < allCars.size(); i++) {
-			acc[i] = allCars.get(i);
+		int j = 0;
+		for(ICar e : allCars.values()) {
+			if(e.getGone() != -1) {
+				j++;
+			}
+		}
+		ICar[] acc = new ICar[j];
+		for (int i = 0; i < j; i++) {
+			if(allCars.get(i).getGone() != -1)
+				acc[i] = allCars.get(i);
 		}
 		return acc;
 	}
@@ -51,10 +58,50 @@ public class Cars extends UnicastRemoteObject implements ICars {
 	}
 
 	public boolean addCar(String model, int price, int pricelocation) throws RemoteException {
-		allCars.put(nextID++, new Car(nextID, model, price, pricelocation));
+		allCars.put(nextID, new Car(nextID, model, price, pricelocation));
+		nextID++;
+
 		return true;
 	}
+	
+	public IObservation[] getObs(int carID) throws RemoteException {
+		if(allCars.get(carID).getStatus().size() == 0) {
+			System.out.println("cest nul");
+			return new IObservation[0];
+		}
+		System.out.println("la getOBSCARS");
+		IObservation[] acc = new IObservation[allCars.get(carID).getStatus().size()];
+		int i = 0;
+		
+		for (IObservation obs : allCars.get(carID).getStatus().values()) {
+			System.out.println("une fois" + allCars.get(carID).getStatus().size() + "i = " + i);
+			acc[i] = obs;
+			i++;
 
+
+			
+			
+		}
+		System.out.println("envoye");
+		return acc;
+		
+	}
+	public Integer[] getUsersObsID(int carID) throws RemoteException {
+		if(allCars.get(carID).getStatus().size() == 0) {
+			return new Integer[0];
+		}
+		Integer[] tmp = new Integer[allCars.get(carID).getStatus().size()];
+		
+		int i = 0;
+		for (Integer id : allCars.get(carID).getStatus().keySet()) {
+			tmp[i] = id;
+			i++;
+			
+		}
+		
+		return tmp;
+		
+	}
 	public boolean rentVehicule(int id,int employee) throws RemoteException, MalformedURLException, NotBoundException, ServiceException {
 		/* If the car is already rented return false */
 		if(allCars.get(id) == null) {
@@ -77,15 +124,22 @@ public class Cars extends UnicastRemoteObject implements ICars {
 
 	}
 
-
+	
 	public boolean buyCar(int id) throws RemoteException {
-
-		return allCars.remove(id) == null ? false : true;
+		
+		allCars.get(id).setGone(-1);
+		return true;
+	}
+	public int getCarGone(int id) throws RemoteException{
+		return allCars.get(id).getGone();
 	}
 
 	public double sendCarPrice(int id) throws RemoteException {
 
 		return allCars.get(id).getPrice();
+	}
+	public void addObservation(int userID,int carID,int carroserieMark, String carroserieDescription,int moteurMark, String moteurDescription, int roueMark, String roueDescription) throws RemoteException {
+		allCars.get(carID).addStatus(userID, carroserieMark, carroserieDescription, moteurMark, moteurDescription, roueMark, roueDescription);
 	}
 
 }

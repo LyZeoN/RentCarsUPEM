@@ -25,5 +25,23 @@ public class Observation extends UnicastRemoteObject implements IObservation{
 		this.components = components;
 	}
 	
+	public int getCarroserieMark() throws RemoteException {
+		return components.get("Carroserie").getMark();
+	}
+	public String getCarroserieDescription() throws RemoteException {
+		return components.get("Carroserie").getDescription();
+	}
+	public int getMoteurMark() throws RemoteException {
+		return components.get("Moteur").getMark();
+	}
+	public String getMoteurDescription() throws RemoteException {
+		return components.get("Moteur").getDescription();
+	}
+	public int getRoueMark() throws RemoteException {
+		return components.get("Roue").getMark();
+	}
+	public String getRoueDescription() throws RemoteException {
+		return components.get("Roue").getDescription();
+	}
 
 }
