@@ -14,3 +14,5 @@
 5) Ne pas oublier de mettre le scope "application" pour chaque Web Service.
 
 6) Rendez-vous sur la page WWW/LoginAchat.html.
+
+7) Pour les scénario de test lancer les sources présent dans le projet Senario-Test
