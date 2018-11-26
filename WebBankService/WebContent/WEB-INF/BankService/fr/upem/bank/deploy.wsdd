@@ -10,7 +10,10 @@
       <parameter name="className" value="fr.upem.bank.Bank"/>
       <parameter name="wsdlPortType" value="Bank"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation xmlns:operNS="http://bank.upem.fr" xmlns:retNS="http://bank.upem.fr" xmlns:rtns="http://bank.upem.fr" name="getAccounts" qname="operNS:getAccounts" returnQName="retNS:getAccountsReturn" returnType="rtns:Account" soapAction="">
+      <operation xmlns:operNS="http://bank.upem.fr" xmlns:retNS="http://bank.upem.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="depositMoney" qname="operNS:depositMoney" returnQName="retNS:depositMoneyReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:mail" type="tns:string"/>
+        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:password" type="tns:string"/>
+        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:amount" type="tns:double"/>
       </operation>
       <operation xmlns:operNS="http://bank.upem.fr" xmlns:retNS="http://bank.upem.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addAccount" qname="operNS:addAccount" returnQName="retNS:addAccountReturn" returnType="rtns:boolean" soapAction="">
         <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:currency" type="tns:string"/>
@@ -22,10 +25,7 @@
         <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:phoneNumber" type="tns:string"/>
         <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:balance" type="tns:double"/>
       </operation>
-      <operation xmlns:operNS="http://bank.upem.fr" xmlns:retNS="http://bank.upem.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="depositMoney" qname="operNS:depositMoney" returnQName="retNS:depositMoneyReturn" returnType="rtns:boolean" soapAction="">
-        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:mail" type="tns:string"/>
-        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:password" type="tns:string"/>
-        <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:amount" type="tns:double"/>
+      <operation xmlns:operNS="http://bank.upem.fr" xmlns:retNS="http://bank.upem.fr" xmlns:rtns="http://bank.upem.fr" name="getAccounts" qname="operNS:getAccounts" returnQName="retNS:getAccountsReturn" returnType="rtns:Account" soapAction="">
       </operation>
       <operation xmlns:operNS="http://bank.upem.fr" xmlns:retNS="http://bank.upem.fr" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="withdrawMoney" qname="operNS:withdrawMoney" returnQName="retNS:withdrawMoneyReturn" returnType="rtns:boolean" soapAction="">
         <parameter xmlns:pns="http://bank.upem.fr" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:mail" type="tns:string"/>

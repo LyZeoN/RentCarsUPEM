@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.xml.rpc.ServiceException;
 import fr.upem.bank.Bank;
@@ -47,7 +48,6 @@ public class CarService {
 		ICars s = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
 		CarSquelleton[] tabCars = new CarSquelleton[shoppingCart.length];
 		int i = 0;
-		ObservationSquelleton[] obstab = new ObservationSquelleton[1];
 
 		for (int carID : shoppingCart) {
 			System.out.println("la");
@@ -59,7 +59,9 @@ public class CarService {
 			List<ObservationSquelleton> obs = new ArrayList<ObservationSquelleton>();
 			ICar[] allCars = s.getCars();
 			if (allCars[i].getStatus().size() == 0) {
-				tabCars[i] = new CarSquelleton(null, s.getCars()[i].getID(), model, price, pricelocation,
+				ObservationSquelleton[] obstab = new ObservationSquelleton[obs.size()];
+
+				tabCars[i] = new CarSquelleton(obstab, s.getCars()[i].getID(), model, price, pricelocation,
 						haveBeenRented);
 				System.out.println(model);
 				i++;
@@ -67,23 +69,24 @@ public class CarService {
 				continue;
 
 			}
-			for (Map.Entry<Integer, List<IObservation>> observ : allCars[i].getStatus().entrySet()) {
+			for (Entry<Integer, IObservation> observ : allCars[i].getStatus().entrySet()) {
 				System.out.println("nana");
-				for (IObservation entry : observ.getValue()) {
-					obs.add(new ObservationSquelleton(users.get(observ.getKey()).getFirstName(),
-							users.get(observ.getKey()).getLastName(), entry.getCarroserieMark(),
-							entry.getCarroserieDescription(), entry.getMoteurMark(), entry.getMoteurDescription(),
-							entry.getRoueMark(), entry.getRoueDescription()));
+				IObservation entry = observ.getValue();
+				obs.add(new ObservationSquelleton(users.get(observ.getKey()).getFirstName(),
+						users.get(observ.getKey()).getLastName(), entry.getCarroserieMark(),
+						entry.getCarroserieDescription(), entry.getMoteurMark(), entry.getMoteurDescription(),
+						entry.getRoueMark(), entry.getRoueDescription()));
 
-				}
-				obstab = new ObservationSquelleton[obs.size()];
+				ObservationSquelleton[] obstab = new ObservationSquelleton[obs.size()];
 				for (int j = 0; j < obs.size(); j++) {
 					obstab[j] = obs.get(j);
 				}
+				tabCars[i] = new CarSquelleton(obstab, s.getCars()[i].getID(), model, price, pricelocation,
+						haveBeenRented);
+				obs.clear();
 
 			}
-			tabCars[i] = new CarSquelleton(obstab, s.getCars()[i].getID(), model, price, pricelocation, haveBeenRented);
-			obs.clear();
+
 			i++;
 		}
 		System.out.println("retour");
@@ -98,7 +101,13 @@ public class CarService {
 		User user = users.get(userID);
 		if (user == null)
 			return false;
+		for (Integer i : user.getBasket()) {
+			if (i == articleID)
+				return false;
+		}
+
 		user.addArticleBasket(articleID);
+
 		return true;
 
 	}
@@ -120,36 +129,90 @@ public class CarService {
 	public CarSquelleton[] getCars() throws RemoteException, MalformedURLException, NotBoundException {
 		ICars r = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
 		CarSquelleton[] toSend = new CarSquelleton[r.getCars().length];
-		ICar[] allCars = r.getCars();
+		List<ObservationSquelleton> obs = new ArrayList<ObservationSquelleton>();
 		for (int i = 0; i < r.getCars().length; i++) {
 
-			List<ObservationSquelleton> obs = new ArrayList<ObservationSquelleton>();
+			System.out.println(r.getCars().length);
 
-			if (allCars[i].getStatus().size() == 0) {
-				toSend[i] = new CarSquelleton(null, r.getCars()[i].getID(), r.getCars()[i].getModel(),
-						r.getCars()[i].getPrice(), r.getCars()[i].getPricelocation(),
-						r.getCars()[i].getHaveBeenRented());
-				continue;
-
-			}
-			for (Map.Entry<Integer, List<IObservation>> observ : r.getCars()[i].getStatus().entrySet()) {
-				for (IObservation entry : observ.getValue()) {
-					obs.add(new ObservationSquelleton(users.get(observ.getKey()).getFirstName(),
-							users.get(observ.getKey()).getLastName(), entry.getCarroserieMark(),
-							entry.getCarroserieDescription(), entry.getMoteurMark(), entry.getMoteurDescription(),
-							entry.getRoueMark(), entry.getRoueDescription()));
-
-				}
+			if (r.getCars()[i].getStatus().size() == 0) {
 				ObservationSquelleton[] obstab = new ObservationSquelleton[obs.size()];
-				for (int j = 0; j < obs.size(); j++) {
-					obstab[j] = obs.get(j);
-				}
 				toSend[i] = new CarSquelleton(obstab, r.getCars()[i].getID(), r.getCars()[i].getModel(),
 						r.getCars()[i].getPrice(), r.getCars()[i].getPricelocation(),
 						r.getCars()[i].getHaveBeenRented());
+
+				continue;
+
+			}
+
+			for (Entry<Integer, IObservation> observ : r.getCars()[i].getStatus().entrySet()) {
+
+				IObservation entry = observ.getValue();
+
+				entry.getCarroserieDescription();
+				users.get(0).getFirstName();
+
+				obs.add(new ObservationSquelleton(users.get(observ.getKey()).getFirstName(),
+						users.get(observ.getKey()).getLastName(), entry.getCarroserieMark(),
+						entry.getCarroserieDescription(), entry.getMoteurMark(), entry.getMoteurDescription(),
+						entry.getRoueMark(), entry.getRoueDescription()));
+
+				ObservationSquelleton[] obstab = new ObservationSquelleton[obs.size()];
+
+				for (int j = 0; j < obs.size(); j++) {
+					obstab[j] = obs.get(j);
+				}
+
+				toSend[i] = new CarSquelleton(obstab, r.getCars()[i].getID(), r.getCars()[i].getModel(),
+						r.getCars()[i].getPrice(), r.getCars()[i].getPricelocation(),
+						r.getCars()[i].getHaveBeenRented());
+				System.out.println("la");
+
 				obs.clear();
 			}
 		}
+		System.out.println("ffdsd labor");
+
+		return toSend;
+
+	}
+
+	public CarSquelleton getObs(int carID) throws RemoteException, MalformedURLException, NotBoundException {
+		ICars r = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
+
+		IObservation[] obs = r.getObs(carID);
+		System.out.println("sent");
+
+		Integer[] obsID = r.getUsersObsID(carID);
+		CarSquelleton toSend;
+		ObservationSquelleton[] allobs = new ObservationSquelleton[obsID.length];
+
+		int i = 0;
+		if(obs == null) {
+			System.out.println("zaza");
+		}
+
+		if (obs.length == 0 || obsID.length == 0) {
+
+			toSend = new CarSquelleton(null, r.getCars()[i].getID(), r.getCars()[i].getModel(),
+					r.getCars()[i].getPrice(), r.getCars()[i].getPricelocation(), r.getCars()[i].getHaveBeenRented());
+			return null;
+		}
+
+
+		for (IObservation obscpy : obs) {
+			System.out.println("SIZE  = " + users.size());
+			allobs[i] = new ObservationSquelleton(users.get(obsID[i]).getFirstName(), users.get(obsID[i]).getLastName(),
+					obscpy.getCarroserieMark(), obscpy.getCarroserieDescription(), obscpy.getMoteurMark(),
+					obscpy.getMoteurDescription(), obscpy.getRoueMark(), obscpy.getMoteurDescription());
+			System.out.println("ouaip" +obs.length +  obsID.length);
+
+			i++;
+
+		}
+
+		toSend = new CarSquelleton(allobs, r.getCars()[i].getID(), r.getCars()[i].getModel(), r.getCars()[i].getPrice(),
+				r.getCars()[i].getPricelocation(), r.getCars()[i].getHaveBeenRented());
+		System.out.println("envoyezer");
 		return toSend;
 
 	}
@@ -165,12 +228,15 @@ public class CarService {
 		for (int carID : u.getBasket()) {
 			System.out.println(carID);
 			if (service.withdrawMoney(email, password, ((ICars) r).sendCarPrice(carID))) {
-				addArticleHistory(r.getSelectedCarsModel(carID), r.getSelectedCarsPrice(carID), r.getSelectedCarsHBR(carID), userID);
+				addArticleHistory(r.getSelectedCarsModel(carID), r.getSelectedCarsPrice(carID),
+						r.getSelectedCarsHBR(carID), userID);
 				if (!r.buyCar(carID)) {
 					return false;
 				}
+			} else {
+				return false;
 			}
-			
+
 		}
 		u.freeBasket();
 		return true;

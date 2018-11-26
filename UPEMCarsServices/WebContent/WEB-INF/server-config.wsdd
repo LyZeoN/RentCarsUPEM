@@ -52,20 +52,23 @@
    <ns1:parameter qname="ns4:haveBeenRented" type="xsd:int"/>
    <ns1:parameter qname="ns4:userID" type="xsd:int"/>
   </ns1:operation>
-  <ns1:operation name="buyCar" qname="ns5:buyCar" returnQName="ns5:buyCarReturn" returnType="xsd:boolean" soapAction="" xmlns:ns5="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns5:userID" type="xsd:int"/>
-   <ns1:parameter qname="ns5:email" type="xsd:string"/>
-   <ns1:parameter qname="ns5:password" type="xsd:string"/>
+  <ns1:operation name="getObs" qname="ns5:getObs" returnQName="ns5:getObsReturn" returnType="ns5:CarSquelleton" soapAction="" xmlns:ns5="http://buy">
+   <ns1:parameter qname="ns5:carID" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:operation name="getCars" qname="ns6:getCars" returnQName="ns6:getCarsReturn" returnType="ns6:CarSquelleton" soapAction="" xmlns:ns6="http://buy"/>
-  <ns1:operation name="getUserHistory" qname="ns7:getUserHistory" returnQName="ns7:getUserHistoryReturn" returnType="ns7:CarSquelleton" soapAction="" xmlns:ns7="http://buy">
-   <ns1:parameter qname="ns7:userID" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="buyCar" qname="ns6:buyCar" returnQName="ns6:buyCarReturn" returnType="xsd:boolean" soapAction="" xmlns:ns6="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:userID" type="xsd:int"/>
+   <ns1:parameter qname="ns6:email" type="xsd:string"/>
+   <ns1:parameter qname="ns6:password" type="xsd:string"/>
   </ns1:operation>
-  <ns1:operation name="addArticleBasket" qname="ns8:addArticleBasket" returnQName="ns8:addArticleBasketReturn" returnType="xsd:boolean" soapAction="" xmlns:ns8="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns8:articleID" type="xsd:int"/>
-   <ns1:parameter qname="ns8:userID" type="xsd:int"/>
+  <ns1:operation name="getCars" qname="ns7:getCars" returnQName="ns7:getCarsReturn" returnType="ns7:CarSquelleton" soapAction="" xmlns:ns7="http://buy"/>
+  <ns1:operation name="getUserHistory" qname="ns8:getUserHistory" returnQName="ns8:getUserHistoryReturn" returnType="ns8:CarSquelleton" soapAction="" xmlns:ns8="http://buy">
+   <ns1:parameter qname="ns8:userID" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="add getUserShoppingCart addArticleHistory getCars connection getUserHistory buyCar addArticleBasket"/>
+  <ns1:operation name="addArticleBasket" qname="ns9:addArticleBasket" returnQName="ns9:addArticleBasketReturn" returnType="xsd:boolean" soapAction="" xmlns:ns9="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:articleID" type="xsd:int"/>
+   <ns1:parameter qname="ns9:userID" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="add getUserShoppingCart getObs addArticleHistory getCars connection getUserHistory buyCar addArticleBasket"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="CarService"/>
   <ns1:parameter name="className" value="buy.CarService"/>
@@ -75,7 +78,9 @@
   <ns1:parameter name="wsdlServiceElement" value="CarServiceService"/>
   <ns1:parameter name="scope" value="application"/>
   
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns9:CarSquelleton" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:buy.CarSquelleton" xmlns:ns9="http://buy"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns10:CarSquelleton" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:buy.CarSquelleton" xmlns:ns10="http://buy"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns11:ObservationSquelleton" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:buy.ObservationSquelleton" xmlns:ns11="http://buy"/>
+  <ns1:arrayMapping innerType="ns12:ObservationSquelleton" languageSpecificType="java:buy.ObservationSquelleton[]" qname="ns12:ArrayOfObservationSquelleton" xmlns:ns12="http://buy"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>

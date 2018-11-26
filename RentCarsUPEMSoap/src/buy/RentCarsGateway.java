@@ -5,6 +5,8 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+import javax.xml.rpc.ServiceException;
+
 
 public class RentCarsGateway {
 
@@ -29,7 +31,7 @@ public class RentCarsGateway {
 	}
 
 	
-	public boolean rentVehicule(int id, int employeeID) throws RemoteException, MalformedURLException, NotBoundException {
+	public boolean rentVehicule(int id, int employeeID) throws RemoteException, MalformedURLException, NotBoundException, ServiceException {
 		ICars r = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
 		return r.rentVehicule(id, employeeID);
 	}

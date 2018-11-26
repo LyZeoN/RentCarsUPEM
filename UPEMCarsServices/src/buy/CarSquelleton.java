@@ -60,5 +60,8 @@ public class CarSquelleton{
 	public String getModel() {
 		return model;
 	}
+	public ObservationSquelleton[] getOsb() {
+		return observations;
+	}
 
 }

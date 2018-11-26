@@ -29,6 +29,9 @@
         <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:haveBeenRented" type="tns:int"/>
         <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:userID" type="tns:int"/>
       </operation>
+      <operation xmlns:operNS="http://buy" xmlns:retNS="http://buy" xmlns:rtns="http://buy" name="getObs" qname="operNS:getObs" returnQName="retNS:getObsReturn" returnType="rtns:CarSquelleton" soapAction="">
+        <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:carID" type="tns:int"/>
+      </operation>
       <operation xmlns:operNS="http://buy" xmlns:retNS="http://buy" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="buyCar" qname="operNS:buyCar" returnQName="retNS:buyCarReturn" returnType="rtns:boolean" soapAction="">
         <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:userID" type="tns:int"/>
         <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:email" type="tns:string"/>
@@ -43,8 +46,10 @@
         <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:articleID" type="tns:int"/>
         <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:userID" type="tns:int"/>
       </operation>
-      <parameter name="allowedMethods" value="add getUserShoppingCart addArticleHistory getCars connection getUserHistory buyCar addArticleBasket"/>
+      <parameter name="allowedMethods" value="add getUserShoppingCart getObs addArticleHistory getCars connection getUserHistory buyCar addArticleBasket"/>
 
       <typeMapping xmlns:ns="http://buy" qname="ns:CarSquelleton" type="java:buy.CarSquelleton" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://buy" xmlns:cmp-ns="http://buy" qname="ns:ArrayOfObservationSquelleton" type="java:buy.ObservationSquelleton[]" innerType="cmp-ns:ObservationSquelleton" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://buy" qname="ns:ObservationSquelleton" type="java:buy.ObservationSquelleton" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
   </service>
 </deployment>

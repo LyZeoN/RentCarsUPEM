@@ -9,8 +9,25 @@ public class ObservationSquelleton {
 	private String roueDescription;
 	private String firstName;
 	private String lastName;
+	public ObservationSquelleton() {
+		
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 	public ObservationSquelleton(String firstName, String lastName,int carroserieMarki,String carroserieDescriptioni, int moteurMarki,String moteurDescriptioni, int roueMarki,String roueDescriptioni) {
 		
+		this.firstName = firstName;
+		this.lastName = lastName;
 		carroserieMark = carroserieMarki;
 		carroserieDescription = carroserieDescriptioni;
 		moteurMark = moteurMarki;
