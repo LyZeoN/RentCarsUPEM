@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>UPEM Cars Service</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+  <div class="jumbotron">
+    <h1>UPEM Cars Service</h1>      
+    <p>Propose à la vente les véhicules qui ont été loués au moins une fois. Ce service Web permet de consulter
+les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un panier et de les acheter. </p>
+  </div>
+  <nav class="navbar navbar-inverse ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">UPEM Cars Service</a>
+    </div>
+    <ul class="nav navbar-nav" id="service">
+      <li id= "service"></li>
+      <li><a href="history.html">History</a></li>
+      <li><a href="shoppingcart.html">Shopping cart</a></li>
+      <li><a href="loginAchat.html" onClick='logout()'><i class="fas fa-power-off fa-lg" style="color:#ffffff"></i></a></li>
+    </ul>
+  </div>
+</nav>
+<h1>La voiture</h1>
+<div class="container">       
+  <div class="well well-sm">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Note</th>
+          <th>nb fois loué</th>
+          <th>Prix</th>
+        </tr>
+      </thead>
+      <tbody id="cars">
+      </tbody>
+    </table>
+  </div>
+</div>
+<h1>Les avis</h1>
+<div class="well well-sm" id="avis">
+    
+  
+    
+</div>
+</div>
+</body>
+</html>
+<script>
+    if (localStorage.getItem('service') === 'Location'){
+      document.getElementById("service").innerHTML = '<li><a href="location.html">Home</a></li><li><a href="loginAchat.html" onClick="logout()""><i class="fas fa-power-off fa-lg" style="color:#ffffff"></i></a></li>';
+    }else{
+
+      document.getElementById("service").innerHTML = '<li><a href="achat.html">Home</a></li><li><a href="history.html">History</a></li><li><a href="shoppingcart.html">Shopping cart</a></li><li><a href="loginAchat.html" onClick="logout()""><i class="fas fa-power-off fa-lg" style="color:#ffffff"></i></a></li>';
+    }
+    
+    $.ajax({
+        url: 'http://localhost:8080/UPEMCarsServices/services/CarService?method=getCars',
+        type: 'GET',
+        crossDomain: true,
+        dataType: 'xml',
+        success: function(result) {
+        	var xmlText = $(result).find("getCarsResponse").children()
+                var num = index + 1;
+                    var id = $(result).find("ns" + num + "\\:id").text();
+                    var globalMark = $(result).find("ns" + num + "\\:globalMark").text();
+                    var rented = $(result).find("ns" + num + "\\:haveBeenRented").text();
+                    var price = $(result).find("ns" + num + "\\:pricelocation").text();
+                    var model = $(result).find("ns" + num + "\\:model").text();
+                    var str = "<tr><td>" + model + "</td><td>" + globalMark + "</td><td>" + rented + " €</td><td>" + price + "</td></tr>";
+                    document.getElementById("cars").innerHTML = str;
+            
+                .each(function(index){
+                        var id = $(result).find("ns" + num + "\\:id").text();
+                        var globalMark = $(result).find("ns" + num + "\\:globalMark").text();
+                        var rented = $(result).find("ns" + num + "\\:haveBeenRented").text();
+                        var price = $(result).find("ns" + num + "\\:pricelocation").text();
+                        var str = '<div class="well well-sm"><div class="row"><div class="col-sm-4">Utilisateur : <b>' + user + '</b></div><div class="col-sm-4 pull-right">Note : <b>' + note + '</b></div></div></div><div class="well well-sm" ><p>' + avis + '</p></div>'
+                        document.getElementById("cars").innerHTML += str;
+
+                  });
+        },
+        error: function(error) { alert("Erreur requête, veuillez réessayer"); },
+      });
+    
+    function logout(){
+        localStorage.removeItem("service");
+        localStorage.removeItem("email");
+        localStorage.removeItem("status");
+        document.location.href = 'loginAchat.html';
+    }
+</script>
+
+<script>
+    if (localStorage.getItem("status") === null){
+        document.location.href = 'loginAchat.html'
+    }
+</script>
