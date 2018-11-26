@@ -49,7 +49,7 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
   </div>
 </div>
 <h1>Les avis</h1>
-<div class="well well-sm" id="avis">
+<div id="avis">
     
   
     
@@ -64,30 +64,32 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
 
       document.getElementById("service").innerHTML = '<li><a href="achat.html">Home</a></li><li><a href="history.html">History</a></li><li><a href="shoppingcart.html">Shopping cart</a></li><li><a href="loginAchat.html" onClick="logout()""><i class="fas fa-power-off fa-lg" style="color:#ffffff"></i></a></li>';
     }
-    
     $.ajax({
-        url: 'http://localhost:8080/UPEMCarsServices/services/CarService?method=getCars',
+        url: 'http://localhost:8080/UPEMCarsServices/services/CarService?method=getObs&carID='+localStorage.getItem('id_car'),
         type: 'GET',
         crossDomain: true,
         dataType: 'xml',
         success: function(result) {
-        	var xmlText = $(result).find("getCarsResponse").children()
-                var num = index + 1;
+        	
+                    var num = 1;
                     var id = $(result).find("ns" + num + "\\:id").text();
                     var globalMark = $(result).find("ns" + num + "\\:globalMark").text();
                     var rented = $(result).find("ns" + num + "\\:haveBeenRented").text();
                     var price = $(result).find("ns" + num + "\\:pricelocation").text();
                     var model = $(result).find("ns" + num + "\\:model").text();
-                    var str = "<tr><td>" + model + "</td><td>" + globalMark + "</td><td>" + rented + " €</td><td>" + price + "</td></tr>";
+                    var str = "<tr><td>" + model + "</td><td>" + globalMark + "</td><td>" + rented + " </td><td>" + price + "€</td></tr>";
                     document.getElementById("cars").innerHTML = str;
-            
+                var xmlText = $(result).find("getObsResponse").children()
                 .each(function(index){
+
                         var id = $(result).find("ns" + num + "\\:id").text();
-                        var globalMark = $(result).find("ns" + num + "\\:globalMark").text();
+                        var globalMark = $(result).find("ns" + num + "\\:firstName").text() + " " + $(result).find("ns" + num + "\\:lastName").text();
                         var rented = $(result).find("ns" + num + "\\:haveBeenRented").text();
                         var price = $(result).find("ns" + num + "\\:pricelocation").text();
-                        var str = '<div class="well well-sm"><div class="row"><div class="col-sm-4">Utilisateur : <b>' + user + '</b></div><div class="col-sm-4 pull-right">Note : <b>' + note + '</b></div></div></div><div class="well well-sm" ><p>' + avis + '</p></div>'
-                        document.getElementById("cars").innerHTML += str;
+                        var note = $(result).find("ns" + num + "\\:carroserieMark").text();
+                        var avis = $(result).find("ns" + num + "\\:carroserieDescription").text();
+                        var str = '<div class="well well-sm"><div class="well well-sm"><div class="row"><div class="col-sm-4">Utilisateur : <b>' + globalMark + '</b></div><div class="col-sm-4 pull-right">Note : <b>' + note + '</b></div></div></div><div class="well well-sm" ><p>' + avis + '</p></div></div>';
+                        document.getElementById("avis").innerHTML += str;
 
                   });
         },

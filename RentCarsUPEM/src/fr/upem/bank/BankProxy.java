@@ -44,6 +44,12 @@ public class BankProxy implements fr.upem.bank.Bank {
     return bank;
   }
   
+  public boolean depositMoney(java.lang.String mail, java.lang.String password, double amount) throws java.rmi.RemoteException{
+    if (bank == null)
+      _initBankProxy();
+    return bank.depositMoney(mail, password, amount);
+  }
+  
   public boolean addAccount(java.lang.String currency, java.lang.String mail, java.lang.String password, java.lang.String firstName, java.lang.String lastName, java.lang.String adress, java.lang.String phoneNumber, double balance) throws java.rmi.RemoteException{
     if (bank == null)
       _initBankProxy();
@@ -54,18 +60,6 @@ public class BankProxy implements fr.upem.bank.Bank {
     if (bank == null)
       _initBankProxy();
     return bank.withdrawMoney(mail, password, amount);
-  }
-  
-  public boolean depositMoney(java.lang.String mail, java.lang.String password, double amount) throws java.rmi.RemoteException{
-    if (bank == null)
-      _initBankProxy();
-    return bank.depositMoney(mail, password, amount);
-  }
-  
-  public fr.upem.bank.Account[] getAccounts() throws java.rmi.RemoteException{
-    if (bank == null)
-      _initBankProxy();
-    return bank.getAccounts();
   }
   
   

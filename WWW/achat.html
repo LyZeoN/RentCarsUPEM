@@ -42,6 +42,7 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
         <th>Note</th>
         <th>Prix</th>
         <th>Achat</th>
+        <th>Details</th>
       </tr>
     </thead>
     <tbody id="cars">
@@ -69,7 +70,7 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
                     var price = $(result).find("ns" + num + "\\:price").text();
                     var model = $(result).find("ns" + num + "\\:model").text();
                     if (parseInt(rented) >= 0){
-                        var str = "<tr><td>" + model + "</td><td>" + globalMark + "</td><td>" + price + " €</td><td><button type='button' class='btn btn-primary' onClick='addBasket(" + id + ")'>Ajouter au panier</button></td></tr>";
+                        var str = "<tr><td>" + model + "</td><td>" + globalMark + "</td><td>" + price + " €</td><td><button type='button' class='btn btn-primary' onClick='addBasket(" + id + ")'>Ajouter au panier</button></td><td><button type='button' class='btn btn-primary' onClick='avis(" + id + ")'>Details</button></td></tr>";
                         document.getElementById("cars").innerHTML += str;
                     }
                   });
@@ -78,7 +79,12 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
       });
     
   var identifiant,password;
-    
+
+    function avis(id){
+        localStorage.setItem("id_car",id);
+        document.location.href='voiture.html';
+    }
+
     function addBasket(id){
         var url = 'http://localhost:8080/UPEMCarsServices/services/CarService?method=addArticleBasket&articleID=' + id + '&userID=' + localStorage.getItem('id'); 
         $.ajax({

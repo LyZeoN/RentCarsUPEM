@@ -8,8 +8,7 @@
 package fr.upem.bank;
 
 public interface Bank extends java.rmi.Remote {
+    public boolean depositMoney(java.lang.String mail, java.lang.String password, double amount) throws java.rmi.RemoteException;
     public boolean addAccount(java.lang.String currency, java.lang.String mail, java.lang.String password, java.lang.String firstName, java.lang.String lastName, java.lang.String adress, java.lang.String phoneNumber, double balance) throws java.rmi.RemoteException;
     public boolean withdrawMoney(java.lang.String mail, java.lang.String password, double amount) throws java.rmi.RemoteException;
-    public boolean depositMoney(java.lang.String mail, java.lang.String password, double amount) throws java.rmi.RemoteException;
-    public fr.upem.bank.Account[] getAccounts() throws java.rmi.RemoteException;
 }

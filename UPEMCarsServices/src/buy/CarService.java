@@ -187,7 +187,7 @@ public class CarService {
 
 			toSend = new CarSquelleton(null, r.getCars()[i].getID(), r.getCars()[i].getModel(),
 					r.getCars()[i].getPrice(), r.getCars()[i].getPricelocation(), r.getCars()[i].getHaveBeenRented());
-			return null;
+			return toSend;
 		}
 
 

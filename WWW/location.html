@@ -40,6 +40,7 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
         <th>Note</th>
         <th>Prix</th>
         <th>Achat</th>
+        <th>Details</th>
       </tr>
     </thead>
     <tbody id="cars">
@@ -65,7 +66,7 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
                     var globalMark = $(result).find("ns" + num + "\\:globalMark").text();
                     var price = $(result).find("ns" + num + "\\:pricelocation").text();
                     var model = $(result).find("ns" + num + "\\:model").text();
-                    var str = "<tr><td>" + model + "</td><td>" + globalMark + "</td><td>" + price + " €</td><td><button type='button' class='btn btn-primary' onClick='louer(" + id + ")'>louer</button></td></tr>";
+                    var str = "<tr><td>" + model + "</td><td>" + globalMark + "</td><td>" + price + " €</td><td><button type='button' class='btn btn-primary' onClick='louer(" + id + ")'>louer</button></td><td><button type='button' class='btn btn-primary' onClick='avis(" + id + ")'>Details</button></td></tr>";
                     document.getElementById("cars").innerHTML += str;
                     });                   
                                   },
@@ -73,7 +74,10 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
       });
     
   var identifiant,password;
-    
+  function avis(id){
+  	localStorage.setItem("id_car",id);
+  	document.location.href='voiture.html';
+  }
     
   function buy() {
        identifiant=prompt('Identifiant',"");
@@ -91,16 +95,17 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
   }
 
   function louer(id){
-      var url = 'http://localhost:8080/RentCarsUPEMSoap/services/RentCarsGateway?method=rentVehicule&id=' + id + '&employeeID=' + '1'; 
+      var url = 'http://localhost:8080/RentCarsUPEMSoap/services/RentCarsGateway?method=rentVehicule&id=' + id + '&employeeID=' + localStorage.getItem("id");
         $.ajax({
         url: url,
         type: 'GET',
         crossDomain: true,
         dataType: 'xml',
         success: function(result) {
-        	var xmlText = $(result).find("rentVehicule").text();
+        	var xmlText = $(result).find("rentVehiculeResponse").text();
             if (xmlText === "true"){
                 alert("La voiture est bien loué.");
+                document.location.href = 'location.html';
             }
             else{
                 alert("Erreur lors de la location");

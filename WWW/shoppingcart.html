@@ -97,7 +97,8 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
 	        success: function(result) {
 	        	var result = $(result).find("ns1\\:buyCarReturn").text();
 	        	if (result === 'true'){
-	        		alert("Vous avez acheter la voiture !");
+	        		alert("Vous avez acheter les voitures !");
+              document.location.href = 'shoppingcart.html';
 	        	}else{
 	        		alert("Error Banque Service");
 	        	}

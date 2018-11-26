@@ -12,8 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.xml.rpc.ServiceException;
-
-import fr.upem.bank.Account;
 import fr.upem.bank.Bank;
 import fr.upem.bank.BankServiceLocator;
 import fr.upem.bank.BankSoapBindingStub;
@@ -116,6 +114,7 @@ public class Cars extends UnicastRemoteObject implements ICars {
 		IEmployee employe = r.getEmployee(employee);
 		if(service.withdrawMoney(employe.getMail(), employe.getPassword(), allCars.get(id).getPrice())) {
 			allCars.get(id).rentMe(employee);
+			allCars.get(id).setGone(-1);
 			return true;			
 		}
 
