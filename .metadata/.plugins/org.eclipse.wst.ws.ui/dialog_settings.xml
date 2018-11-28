@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="0/org.eclipse.jst.ws.wsImpl.java">
+		<item value="fr.upem.bank.Bank"/>
+		<item value="buy.UPEMCorpGateway"/>
+		<item value="buy.CarService"/>
+		<item value="buy.RentCarsGateway"/>
+	</list>
+</section>

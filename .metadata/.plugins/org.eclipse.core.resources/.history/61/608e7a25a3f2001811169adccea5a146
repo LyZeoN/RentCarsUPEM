@@ -1,0 +1,104 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="/home/jordan/RestProjet/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/RentCarsUPEMSoap/WEB-INF/attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="RentCarsGateway" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="addCar" qname="ns1:addCar" returnQName="ns1:addCarReturn" returnType="xsd:boolean" soapAction="" xmlns:ns1="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:model" type="xsd:string"/>
+   <ns2:parameter qname="ns1:price" type="xsd:int"/>
+   <ns2:parameter qname="ns1:pricelocation" type="xsd:int"/>
+  </ns2:operation>
+  <ns1:operation name="rentVehicule" qname="ns2:rentVehicule" returnQName="ns2:rentVehiculeReturn" returnType="xsd:boolean" soapAction="" xmlns:ns2="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:id" type="xsd:int"/>
+   <ns1:parameter qname="ns2:employeeid" type="xsd:int"/>
+   <ns1:parameter qname="ns2:mail" type="xsd:string"/>
+   <ns1:parameter qname="ns2:password" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="buyCar" qname="ns3:buyCar" returnQName="ns3:buyCarReturn" returnType="xsd:boolean" soapAction="" xmlns:ns3="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:id" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="sendCarPrice" qname="ns4:sendCarPrice" returnQName="ns4:sendCarPriceReturn" returnType="xsd:double" soapAction="" xmlns:ns4="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:id" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="getSelectedCarsModel" qname="ns5:getSelectedCarsModel" returnQName="ns5:getSelectedCarsModelReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:carID" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="getSelectedCarsPrice" qname="ns6:getSelectedCarsPrice" returnQName="ns6:getSelectedCarsPriceReturn" returnType="xsd:double" soapAction="" xmlns:ns6="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:carID" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="getSelectedCarsHBR" qname="ns7:getSelectedCarsHBR" returnQName="ns7:getSelectedCarsHBRReturn" returnType="xsd:int" soapAction="" xmlns:ns7="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:carID" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="freeCar" qname="ns8:freeCar" returnQName="ns8:freeCarReturn" returnType="xsd:boolean" soapAction="" xmlns:ns8="http://buy" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns8:carID" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="setObservation" qname="ns9:setObservation" soapAction="" xmlns:ns9="http://buy">
+   <ns1:parameter qname="ns9:userID" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns9:carID" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns9:carroserieMark" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+   <ns1:parameter qname="ns9:carroserieDescription" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="getCars" qname="ns10:getCars" returnQName="ns10:getCarsReturn" returnType="ns10:Car" soapAction="" xmlns:ns10="http://buy"/>
+  <ns1:operation name="getObs" qname="ns11:getObs" returnQName="ns11:getObsReturn" returnType="ns11:Car" soapAction="" xmlns:ns11="http://buy">
+   <ns1:parameter qname="ns11:carID" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getObs addCar getSelectedCarsPrice getCars getSelectedCarsHBR freeCar rentVehicule setObservation buyCar sendCarPrice getSelectedCarsModel"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="RentCarsGateway"/>
+  <ns1:parameter name="className" value="buy.RentCarsGateway"/>
+  <ns1:parameter name="wsdlServicePort" value="RentCarsGateway"/>
+  <ns1:parameter name="schemaQualified" value="http://buy"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://buy"/>
+  <ns1:parameter name="wsdlServiceElement" value="RentCarsGatewayService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns12:Car" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:buy.Car" xmlns:ns12="http://buy"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns13:ObservationSquelleton" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:buy.ObservationSquelleton" xmlns:ns13="http://buy"/>
+  <ns1:arrayMapping innerType="ns14:ObservationSquelleton" languageSpecificType="java:buy.ObservationSquelleton[]" qname="ns14:ArrayOfObservationSquelleton" xmlns:ns14="http://buy"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

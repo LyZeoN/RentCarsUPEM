@@ -1,0 +1,79 @@
+package buy;
+
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+
+import javax.xml.rpc.ServiceException;
+
+
+public class RentCarsGateway {
+
+	
+	public RentCarsGateway() {
+		
+	}
+
+	public Car[] getCars() throws MalformedURLException, RemoteException, NotBoundException {
+		ICars r = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
+		Car[] toSend = new Car[r.getCars().length];
+		for(int i = 0;i < r.getCars().length;i++) {
+			toSend[i] = new Car(r.getCars()[i].getID(), r.getCars()[i].getModel(), r.getCars()[i].getPrice(), r.getCars()[i].getPricelocation(),r.getCars()[i].getRenter());
+		}
+		return toSend;
+	}
+	
+	
+	public boolean addCar(String model, int price, int pricelocation) throws MalformedURLException, RemoteException, NotBoundException  {
+		ICars r = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
+		return r.addCar(model, price, pricelocation);
+	}
+
+	
+	public boolean rentVehicule(int id, int employeeid, String mail, String password) throws RemoteException, MalformedURLException, NotBoundException, ServiceException {
+		ICars r = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
+		return r.rentVehicule(id, employeeid, mail, password);
+	}
+
+	
+	public boolean buyCar(int id) throws RemoteException, MalformedURLException, NotBoundException {
+		ICars r = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
+		return r.buyCar(id);
+	}
+
+	
+	public double sendCarPrice(int id) throws RemoteException, MalformedURLException, NotBoundException {
+		ICars r = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
+		return r.sendCarPrice(id);
+	}
+
+	
+	public String getSelectedCarsModel(int carID) throws RemoteException, MalformedURLException, NotBoundException {
+		ICars r = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
+		return r.getSelectedCarsModel(carID);
+	}
+
+	
+	public double getSelectedCarsPrice(int carID) throws RemoteException, MalformedURLException, NotBoundException {
+		ICars r = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
+		return r.getSelectedCarsPrice(carID);
+	}
+
+	
+	public int getSelectedCarsHBR(int carID) throws RemoteException, MalformedURLException, NotBoundException {
+		ICars r = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
+		return r.getSelectedCarsHBR(carID);
+	}
+	
+	public boolean freeCar(int carID) throws MalformedURLException, RemoteException, NotBoundException {
+		ICars r = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
+		return r.freeCar(carID);
+	}
+	
+	public void setObservation(int userID,int carID,int carroserieMark,String carroserieDescription) throws RemoteException, MalformedURLException, NotBoundException {
+        ICars r = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
+        r.addObservation(userID, carID, carroserieMark, carroserieDescription, 0, null, 0, null);
+    }
+	
+}

@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://buy" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://buy" xmlns:intf="http://buy" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://buy" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getUserShoppingCart">
+    <complexType>
+     <sequence>
+      <element name="userID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUserShoppingCartResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getUserShoppingCartReturn" type="impl:CarSquelleton"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ObservationSquelleton">
+    <sequence>
+     <element name="carroserieDescription" nillable="true" type="xsd:string"/>
+     <element name="carroserieMark" type="xsd:int"/>
+     <element name="firstName" nillable="true" type="xsd:string"/>
+     <element name="lastName" nillable="true" type="xsd:string"/>
+     <element name="moteurDescription" nillable="true" type="xsd:string"/>
+     <element name="moteurMark" type="xsd:int"/>
+     <element name="roueDescription" nillable="true" type="xsd:string"/>
+     <element name="roueMark" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfObservationSquelleton">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:ObservationSquelleton"/>
+    </sequence>
+   </complexType>
+   <complexType name="CarSquelleton">
+    <sequence>
+     <element name="globalMark" type="xsd:int"/>
+     <element name="haveBeenRented" type="xsd:int"/>
+     <element name="id" type="xsd:int"/>
+     <element name="model" nillable="true" type="xsd:string"/>
+     <element name="osb" nillable="true" type="impl:ArrayOfObservationSquelleton"/>
+     <element name="price" type="xsd:double"/>
+     <element name="pricelocation" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <element name="buyCar">
+    <complexType>
+     <sequence>
+      <element name="userID" type="xsd:int"/>
+      <element name="email" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buyCarResponse">
+    <complexType>
+     <sequence>
+      <element name="buyCarReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="connection">
+    <complexType>
+     <sequence>
+      <element name="mail" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="connectionResponse">
+    <complexType>
+     <sequence>
+      <element name="connectionReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCars">
+    <complexType/>
+   </element>
+   <element name="getCarsResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getCarsReturn" type="impl:CarSquelleton"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUserHistory">
+    <complexType>
+     <sequence>
+      <element name="userID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUserHistoryResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getUserHistoryReturn" type="impl:CarSquelleton"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addArticleHistory">
+    <complexType>
+     <sequence>
+      <element name="model" type="xsd:string"/>
+      <element name="price" type="xsd:double"/>
+      <element name="haveBeenRented" type="xsd:int"/>
+      <element name="userID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addArticleHistoryResponse">
+    <complexType>
+     <sequence>
+      <element name="addArticleHistoryReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addArticleBasket">
+    <complexType>
+     <sequence>
+      <element name="articleID" type="xsd:int"/>
+      <element name="userID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addArticleBasketResponse">
+    <complexType>
+     <sequence>
+      <element name="addArticleBasketReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="add">
+    <complexType>
+     <sequence>
+      <element name="firstName" type="xsd:string"/>
+      <element name="lastName" type="xsd:string"/>
+      <element name="mail" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addResponse">
+    <complexType>
+     <sequence>
+      <element name="addReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getUserHistoryResponse">
+
+      <wsdl:part element="impl:getUserHistoryResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addArticleHistoryRequest">
+
+      <wsdl:part element="impl:addArticleHistory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buyCarResponse">
+
+      <wsdl:part element="impl:buyCarResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserShoppingCartRequest">
+
+      <wsdl:part element="impl:getUserShoppingCart" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserHistoryRequest">
+
+      <wsdl:part element="impl:getUserHistory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCarsRequest">
+
+      <wsdl:part element="impl:getCars" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buyCarRequest">
+
+      <wsdl:part element="impl:buyCar" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserShoppingCartResponse">
+
+      <wsdl:part element="impl:getUserShoppingCartResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCarsResponse">
+
+      <wsdl:part element="impl:getCarsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addResponse">
+
+      <wsdl:part element="impl:addResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addArticleBasketRequest">
+
+      <wsdl:part element="impl:addArticleBasket" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addArticleHistoryResponse">
+
+      <wsdl:part element="impl:addArticleHistoryResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addRequest">
+
+      <wsdl:part element="impl:add" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="connectionRequest">
+
+      <wsdl:part element="impl:connection" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="connectionResponse">
+
+      <wsdl:part element="impl:connectionResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addArticleBasketResponse">
+
+      <wsdl:part element="impl:addArticleBasketResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="CarService">
+
+      <wsdl:operation name="getUserShoppingCart">
+
+         <wsdl:input message="impl:getUserShoppingCartRequest" name="getUserShoppingCartRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getUserShoppingCartResponse" name="getUserShoppingCartResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buyCar">
+
+         <wsdl:input message="impl:buyCarRequest" name="buyCarRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buyCarResponse" name="buyCarResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="connection">
+
+         <wsdl:input message="impl:connectionRequest" name="connectionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:connectionResponse" name="connectionResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCars">
+
+         <wsdl:input message="impl:getCarsRequest" name="getCarsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getCarsResponse" name="getCarsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserHistory">
+
+         <wsdl:input message="impl:getUserHistoryRequest" name="getUserHistoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getUserHistoryResponse" name="getUserHistoryResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addArticleHistory">
+
+         <wsdl:input message="impl:addArticleHistoryRequest" name="addArticleHistoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addArticleHistoryResponse" name="addArticleHistoryResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addArticleBasket">
+
+         <wsdl:input message="impl:addArticleBasketRequest" name="addArticleBasketRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addArticleBasketResponse" name="addArticleBasketResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="add">
+
+         <wsdl:input message="impl:addRequest" name="addRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addResponse" name="addResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CarServiceSoapBinding" type="impl:CarService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getUserShoppingCart">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUserShoppingCartRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUserShoppingCartResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buyCar">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buyCarRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buyCarResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="connection">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="connectionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="connectionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCars">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCarsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCarsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserHistory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getUserHistoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUserHistoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addArticleHistory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addArticleHistoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addArticleHistoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addArticleBasket">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addArticleBasketRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addArticleBasketResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="add">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CarServiceService">
+
+      <wsdl:port binding="impl:CarServiceSoapBinding" name="CarService">
+
+         <wsdlsoap:address location="http://localhost:8080/UPEMCarsServices/services/CarService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
