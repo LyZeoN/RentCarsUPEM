@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/fr/upem/bank/Bank.java=UTF-8
+encoding//src/fr/upem/bank/BankService.java=UTF-8
+encoding//src/fr/upem/bank/BankServiceLocator.java=UTF-8
+encoding//src/fr/upem/bank/BankSoapBindingStub.java=UTF-8

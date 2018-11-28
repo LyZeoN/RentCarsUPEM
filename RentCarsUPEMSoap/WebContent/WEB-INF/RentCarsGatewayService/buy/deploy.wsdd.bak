@@ -1,0 +1,89 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from RentCarsGatewayService WSDL service -->
+
+  <service name="RentCarsGateway" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://buy"/>
+      <parameter name="wsdlServiceElement" value="RentCarsGatewayService"/>
+      <parameter name="schemaQualified" value="http://buy"/>
+      <parameter name="wsdlServicePort" value="RentCarsGateway"/>
+      <parameter name="className" value="buy.RentCarsGatewaySoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="RentCarsGateway"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="addCar" qname="operNS:addCar" xmlns:operNS="http://buy" returnQName="retNS:addCarReturn" xmlns:retNS="http://buy" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:model" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:price" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pricelocation" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="rentVehicule" qname="operNS:rentVehicule" xmlns:operNS="http://buy" returnQName="retNS:rentVehiculeReturn" xmlns:retNS="http://buy" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:employeeid" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:mail" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="buyCar" qname="operNS:buyCar" xmlns:operNS="http://buy" returnQName="retNS:buyCarReturn" xmlns:retNS="http://buy" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="sendCarPrice" qname="operNS:sendCarPrice" xmlns:operNS="http://buy" returnQName="retNS:sendCarPriceReturn" xmlns:retNS="http://buy" returnType="rtns:double" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getSelectedCarsModel" qname="operNS:getSelectedCarsModel" xmlns:operNS="http://buy" returnQName="retNS:getSelectedCarsModelReturn" xmlns:retNS="http://buy" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:carID" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getSelectedCarsPrice" qname="operNS:getSelectedCarsPrice" xmlns:operNS="http://buy" returnQName="retNS:getSelectedCarsPriceReturn" xmlns:retNS="http://buy" returnType="rtns:double" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:carID" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getSelectedCarsHBR" qname="operNS:getSelectedCarsHBR" xmlns:operNS="http://buy" returnQName="retNS:getSelectedCarsHBRReturn" xmlns:retNS="http://buy" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:carID" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="freeCar" qname="operNS:freeCar" xmlns:operNS="http://buy" returnQName="retNS:freeCarReturn" xmlns:retNS="http://buy" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:carID" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="setObservation" qname="operNS:setObservation" xmlns:operNS="http://buy" soapAction="" >
+        <parameter qname="pns:userID" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:carID" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:carroserieMark" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:carroserieDescription" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getCars" qname="operNS:getCars" xmlns:operNS="http://buy" returnQName="retNS:getCarsReturn" xmlns:retNS="http://buy" returnType="rtns:Car" xmlns:rtns="http://buy" soapAction="" >
+      </operation>
+      <operation name="getObs" qname="operNS:getObs" xmlns:operNS="http://buy" returnQName="retNS:getObsReturn" xmlns:retNS="http://buy" returnType="rtns:Car" xmlns:rtns="http://buy" soapAction="" >
+        <parameter qname="pns:carID" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getObs addCar getSelectedCarsPrice getCars getSelectedCarsHBR freeCar rentVehicule setObservation buyCar sendCarPrice getSelectedCarsModel"/>
+
+      <typeMapping
+        xmlns:ns="http://buy"
+        qname="ns:Car"
+        type="java:buy.Car"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://buy"
+        qname="ns:ArrayOfObservationSquelleton"
+        type="java:buy.ObservationSquelleton[]"
+        innerType="cmp-ns:ObservationSquelleton" xmlns:cmp-ns="http://buy"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://buy"
+        qname="ns:ObservationSquelleton"
+        type="java:buy.ObservationSquelleton"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
