@@ -72,7 +72,7 @@ public class RentCarsGateway {
 	}
 	
 	public boolean setObservation(int userID,int carID,int carroserieMark,String carroserieDescription) throws RemoteException, MalformedURLException, NotBoundException {
-        ICars r = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
+		ICars r = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
         r.addObservation(userID, carID, carroserieMark, carroserieDescription, 0, "", 0, "");
         return true;
     }

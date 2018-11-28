@@ -10,7 +10,6 @@ public class Server {
 			Registry r = LocateRegistry.createRegistry(2020);
 		
 			ICars cars = new Cars();
-			//System.setProperty("java.rmi.server.hostname","192.168.0.28");
 
 			Naming.rebind("rmi://localhost:2020/RentCarsUPEM", cars);	
 		}catch (Exception e) {

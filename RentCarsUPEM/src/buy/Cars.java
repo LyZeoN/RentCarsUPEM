@@ -120,7 +120,6 @@ public class Cars extends UnicastRemoteObject implements ICars {
 
 	public boolean buyCar(int id) throws RemoteException {
 		allCars.remove(id);
-		/*allCars.get(id).setGone(-1);*/
 		return true;
 	}
 	

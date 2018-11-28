@@ -93,6 +93,7 @@ public class Car extends UnicastRemoteObject implements ICar{
 		if (cmp != 0) {
 			globalMark /= cmp;
 		}
+	
 
 	}
 	
@@ -101,8 +102,8 @@ public class Car extends UnicastRemoteObject implements ICar{
 	}
 	
 	public void addStatus(int employee, int carroserieMark,String carroserieDescription, int moteurMark,String moteurDescription, int roueMark,String roueDescription) throws RemoteException {
-		
 		if(status.containsKey(employee)) {
+
 			status.remove(employee);
 			status.put(employee,new Observation(carroserieMark,carroserieDescription,moteurMark,moteurDescription,roueMark,roueDescription));
 		}
