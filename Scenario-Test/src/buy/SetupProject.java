@@ -24,7 +24,7 @@ class SetupProject {
 		IEmployees corp = (IEmployees) Naming.lookup("rmi://localhost:2021/UPEMCorp");
 		
 		((BankSoapBindingStub) bankservice).setMaintainSession(true);
-		bankservice.addAccount("USD", "l@l", "l", "Hugo", "Douangmala",
+		bankservice.addAccount("USD", "jo@gmail.com", "super", "Hugo", "Douangmala",
 				"In the Sky", "0606060606", 60000000);	
 		
 		((IEmployees) corp).add("Rayane", "CHERIFI", "rc@gmail.com", "nice");
