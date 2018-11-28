@@ -4,48 +4,6 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://buy" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="getSelectedCarsHBR">
-    <complexType>
-     <sequence>
-      <element name="carID" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getSelectedCarsHBRResponse">
-    <complexType>
-     <sequence>
-      <element name="getSelectedCarsHBRReturn" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getSelectedCarsPrice">
-    <complexType>
-     <sequence>
-      <element name="carID" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getSelectedCarsPriceResponse">
-    <complexType>
-     <sequence>
-      <element name="getSelectedCarsPriceReturn" type="xsd:double"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getSelectedCarsModel">
-    <complexType>
-     <sequence>
-      <element name="carID" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getSelectedCarsModelResponse">
-    <complexType>
-     <sequence>
-      <element name="getSelectedCarsModelReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="addCar">
     <complexType>
      <sequence>
@@ -66,7 +24,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="id" type="xsd:int"/>
-      <element name="employeeID" type="xsd:int"/>
+      <element name="employeeid" type="xsd:int"/>
+      <element name="mail" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -91,26 +51,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="getCars">
-    <complexType/>
-   </element>
-   <element name="getCarsResponse">
-    <complexType>
-     <sequence>
-      <element maxOccurs="unbounded" name="getCarsReturn" type="impl:Car"/>
-     </sequence>
-    </complexType>
-   </element>
-   <complexType name="Car">
-    <sequence>
-     <element name="globalMark" type="xsd:int"/>
-     <element name="haveBeenRented" type="xsd:int"/>
-     <element name="id" type="xsd:int"/>
-     <element name="model" nillable="true" type="xsd:string"/>
-     <element name="price" type="xsd:double"/>
-     <element name="pricelocation" type="xsd:double"/>
-    </sequence>
-   </complexType>
    <element name="sendCarPrice">
     <complexType>
      <sequence>
@@ -122,6 +62,129 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="sendCarPriceReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSelectedCarsModel">
+    <complexType>
+     <sequence>
+      <element name="carID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSelectedCarsModelResponse">
+    <complexType>
+     <sequence>
+      <element name="getSelectedCarsModelReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSelectedCarsPrice">
+    <complexType>
+     <sequence>
+      <element name="carID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSelectedCarsPriceResponse">
+    <complexType>
+     <sequence>
+      <element name="getSelectedCarsPriceReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSelectedCarsHBR">
+    <complexType>
+     <sequence>
+      <element name="carID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSelectedCarsHBRResponse">
+    <complexType>
+     <sequence>
+      <element name="getSelectedCarsHBRReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="freeCar">
+    <complexType>
+     <sequence>
+      <element name="carID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="freeCarResponse">
+    <complexType>
+     <sequence>
+      <element name="freeCarReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setObservation">
+    <complexType>
+     <sequence>
+      <element name="userID" type="xsd:int"/>
+      <element name="carID" type="xsd:int"/>
+      <element name="carroserieMark" type="xsd:int"/>
+      <element name="carroserieDescription" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setObservationResponse">
+    <complexType/>
+   </element>
+   <element name="getCars">
+    <complexType/>
+   </element>
+   <element name="getCarsResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getCarsReturn" type="impl:Car"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ObservationSquelleton">
+    <sequence>
+     <element name="carroserieDescription" nillable="true" type="xsd:string"/>
+     <element name="carroserieMark" type="xsd:int"/>
+     <element name="firstName" nillable="true" type="xsd:string"/>
+     <element name="lastName" nillable="true" type="xsd:string"/>
+     <element name="moteurDescription" nillable="true" type="xsd:string"/>
+     <element name="moteurMark" type="xsd:int"/>
+     <element name="roueDescription" nillable="true" type="xsd:string"/>
+     <element name="roueMark" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfObservationSquelleton">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="impl:ObservationSquelleton"/>
+    </sequence>
+   </complexType>
+   <complexType name="Car">
+    <sequence>
+     <element name="globalMark" type="xsd:int"/>
+     <element name="haveBeenRented" type="xsd:int"/>
+     <element name="id" type="xsd:int"/>
+     <element name="idRenter" type="xsd:int"/>
+     <element name="model" nillable="true" type="xsd:string"/>
+     <element name="observations" nillable="true" type="impl:ArrayOfObservationSquelleton"/>
+     <element name="osb" nillable="true" type="impl:ArrayOfObservationSquelleton"/>
+     <element name="price" type="xsd:double"/>
+     <element name="pricelocation" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <element name="getObs">
+    <complexType>
+     <sequence>
+      <element name="carID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getObsResponse">
+    <complexType>
+     <sequence>
+      <element name="getObsReturn" type="impl:Car"/>
      </sequence>
     </complexType>
    </element>
@@ -144,9 +207,25 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="setObservationResponse">
+
+      <wsdl:part element="impl:setObservationResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="getSelectedCarsModelRequest">
 
       <wsdl:part element="impl:getSelectedCarsModel" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="setObservationRequest">
+
+      <wsdl:part element="impl:setObservation" name="parameters">
 
       </wsdl:part>
 
@@ -168,6 +247,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="getObsRequest">
+
+      <wsdl:part element="impl:getObs" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="sendCarPriceRequest">
 
       <wsdl:part element="impl:sendCarPrice" name="parameters">
@@ -176,9 +263,25 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="freeCarResponse">
+
+      <wsdl:part element="impl:freeCarResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="getCarsRequest">
 
       <wsdl:part element="impl:getCars" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="freeCarRequest">
+
+      <wsdl:part element="impl:freeCar" name="parameters">
 
       </wsdl:part>
 
@@ -195,6 +298,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="getCarsResponse">
 
       <wsdl:part element="impl:getCarsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getObsResponse">
+
+      <wsdl:part element="impl:getObsResponse" name="parameters">
 
       </wsdl:part>
 
@@ -258,42 +369,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:portType name="RentCarsGateway">
 
-      <wsdl:operation name="getSelectedCarsHBR">
-
-         <wsdl:input message="impl:getSelectedCarsHBRRequest" name="getSelectedCarsHBRRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getSelectedCarsHBRResponse" name="getSelectedCarsHBRResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getSelectedCarsPrice">
-
-         <wsdl:input message="impl:getSelectedCarsPriceRequest" name="getSelectedCarsPriceRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getSelectedCarsPriceResponse" name="getSelectedCarsPriceResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getSelectedCarsModel">
-
-         <wsdl:input message="impl:getSelectedCarsModelRequest" name="getSelectedCarsModelRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getSelectedCarsModelResponse" name="getSelectedCarsModelResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="addCar">
 
          <wsdl:input message="impl:addCarRequest" name="addCarRequest">
@@ -330,18 +405,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="getCars">
-
-         <wsdl:input message="impl:getCarsRequest" name="getCarsRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getCarsResponse" name="getCarsResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="sendCarPrice">
 
          <wsdl:input message="impl:sendCarPriceRequest" name="sendCarPriceRequest">
@@ -354,65 +417,95 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-   </wsdl:portType>
+      <wsdl:operation name="getSelectedCarsModel">
 
-   <wsdl:binding name="RentCarsGatewaySoapBinding" type="impl:RentCarsGateway">
+         <wsdl:input message="impl:getSelectedCarsModelRequest" name="getSelectedCarsModelRequest">
 
-      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+       </wsdl:input>
 
-      <wsdl:operation name="getSelectedCarsHBR">
+         <wsdl:output message="impl:getSelectedCarsModelResponse" name="getSelectedCarsModelResponse">
 
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getSelectedCarsHBRRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getSelectedCarsHBRResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
+       </wsdl:output>
 
       </wsdl:operation>
 
       <wsdl:operation name="getSelectedCarsPrice">
 
-         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input message="impl:getSelectedCarsPriceRequest" name="getSelectedCarsPriceRequest">
 
-         <wsdl:input name="getSelectedCarsPriceRequest">
+       </wsdl:input>
 
-            <wsdlsoap:body use="literal"/>
+         <wsdl:output message="impl:getSelectedCarsPriceResponse" name="getSelectedCarsPriceResponse">
 
-         </wsdl:input>
-
-         <wsdl:output name="getSelectedCarsPriceResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
+       </wsdl:output>
 
       </wsdl:operation>
 
-      <wsdl:operation name="getSelectedCarsModel">
+      <wsdl:operation name="getSelectedCarsHBR">
 
-         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input message="impl:getSelectedCarsHBRRequest" name="getSelectedCarsHBRRequest">
 
-         <wsdl:input name="getSelectedCarsModelRequest">
+       </wsdl:input>
 
-            <wsdlsoap:body use="literal"/>
+         <wsdl:output message="impl:getSelectedCarsHBRResponse" name="getSelectedCarsHBRResponse">
 
-         </wsdl:input>
-
-         <wsdl:output name="getSelectedCarsModelResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
+       </wsdl:output>
 
       </wsdl:operation>
+
+      <wsdl:operation name="freeCar">
+
+         <wsdl:input message="impl:freeCarRequest" name="freeCarRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:freeCarResponse" name="freeCarResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setObservation">
+
+         <wsdl:input message="impl:setObservationRequest" name="setObservationRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:setObservationResponse" name="setObservationResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCars">
+
+         <wsdl:input message="impl:getCarsRequest" name="getCarsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getCarsResponse" name="getCarsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getObs">
+
+         <wsdl:input message="impl:getObsRequest" name="getObsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getObsResponse" name="getObsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="RentCarsGatewaySoapBinding" type="impl:RentCarsGateway">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
       <wsdl:operation name="addCar">
 
@@ -468,6 +561,114 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="sendCarPrice">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendCarPriceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendCarPriceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSelectedCarsModel">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSelectedCarsModelRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSelectedCarsModelResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSelectedCarsPrice">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSelectedCarsPriceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSelectedCarsPriceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSelectedCarsHBR">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSelectedCarsHBRRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSelectedCarsHBRResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="freeCar">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="freeCarRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="freeCarResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setObservation">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setObservationRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setObservationResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="getCars">
 
          <wsdlsoap:operation soapAction=""/>
@@ -486,17 +687,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="sendCarPrice">
+      <wsdl:operation name="getObs">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="sendCarPriceRequest">
+         <wsdl:input name="getObsRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="sendCarPriceResponse">
+         <wsdl:output name="getObsResponse">
 
             <wsdlsoap:body use="literal"/>
 

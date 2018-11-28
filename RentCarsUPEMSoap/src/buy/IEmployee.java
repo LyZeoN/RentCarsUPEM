@@ -11,5 +11,4 @@ public interface IEmployee extends Remote{
 	public String getPassword() throws RemoteException;
 	public void notifyMe(String model) throws RemoteException;
 	public int getID() throws RemoteException;
-
 }

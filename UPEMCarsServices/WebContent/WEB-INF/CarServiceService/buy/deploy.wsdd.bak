@@ -20,31 +20,16 @@
       <parameter name="className" value="buy.CarServiceSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="CarService"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation name="add" qname="operNS:add" xmlns:operNS="http://buy" returnQName="retNS:addReturn" xmlns:retNS="http://buy" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:firstName" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <parameter qname="pns:lastName" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <parameter qname="pns:mail" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <parameter qname="pns:password" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="connection" qname="operNS:connection" xmlns:operNS="http://buy" returnQName="retNS:connectionReturn" xmlns:retNS="http://buy" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:mail" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <parameter qname="pns:password" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
       <operation name="getUserShoppingCart" qname="operNS:getUserShoppingCart" xmlns:operNS="http://buy" returnQName="retNS:getUserShoppingCartReturn" xmlns:retNS="http://buy" returnType="rtns:CarSquelleton" xmlns:rtns="http://buy" soapAction="" >
         <parameter qname="pns:userID" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="addArticleHistory" qname="operNS:addArticleHistory" xmlns:operNS="http://buy" returnQName="retNS:addArticleHistoryReturn" xmlns:retNS="http://buy" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:model" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <parameter qname="pns:price" xmlns:pns="http://buy" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <parameter qname="pns:haveBeenRented" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <parameter qname="pns:userID" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="getObs" qname="operNS:getObs" xmlns:operNS="http://buy" returnQName="retNS:getObsReturn" xmlns:retNS="http://buy" returnType="rtns:CarSquelleton" xmlns:rtns="http://buy" soapAction="" >
-        <parameter qname="pns:carID" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
       <operation name="buyCar" qname="operNS:buyCar" xmlns:operNS="http://buy" returnQName="retNS:buyCarReturn" xmlns:retNS="http://buy" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:userID" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:email" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="connection" qname="operNS:connection" xmlns:operNS="http://buy" returnQName="retNS:connectionReturn" xmlns:retNS="http://buy" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:mail" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:password" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
       <operation name="getCars" qname="operNS:getCars" xmlns:operNS="http://buy" returnQName="retNS:getCarsReturn" xmlns:retNS="http://buy" returnType="rtns:CarSquelleton" xmlns:rtns="http://buy" soapAction="" >
@@ -52,11 +37,24 @@
       <operation name="getUserHistory" qname="operNS:getUserHistory" xmlns:operNS="http://buy" returnQName="retNS:getUserHistoryReturn" xmlns:retNS="http://buy" returnType="rtns:CarSquelleton" xmlns:rtns="http://buy" soapAction="" >
         <parameter qname="pns:userID" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
+      <operation name="addArticleHistory" qname="operNS:addArticleHistory" xmlns:operNS="http://buy" returnQName="retNS:addArticleHistoryReturn" xmlns:retNS="http://buy" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:model" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:price" xmlns:pns="http://buy" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:haveBeenRented" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:globalMark" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:userID" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
       <operation name="addArticleBasket" qname="operNS:addArticleBasket" xmlns:operNS="http://buy" returnQName="retNS:addArticleBasketReturn" xmlns:retNS="http://buy" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:articleID" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:userID" xmlns:pns="http://buy" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <parameter name="allowedMethods" value="add getUserShoppingCart getObs addArticleHistory getCars connection getUserHistory buyCar addArticleBasket"/>
+      <operation name="add" qname="operNS:add" xmlns:operNS="http://buy" returnQName="retNS:addReturn" xmlns:retNS="http://buy" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:firstName" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:lastName" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:mail" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://buy" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getUserShoppingCart add getCars addArticleHistory connection getUserHistory buyCar addArticleBasket"/>
 
       <typeMapping
         xmlns:ns="http://buy"

@@ -14,8 +14,8 @@ public interface ICar extends Remote {
 	public void setPricelocation(double pricelocation) throws RemoteException;
 	public int getHaveBeenRented() throws RemoteException;
 	public void setHaveBeenRented(int haveBeenRented) throws RemoteException;
-	public Optional<Integer> getRenter() throws RemoteException;
-	public void setRenter(Optional<Integer> renter) throws RemoteException;
+	public int getRenter() throws RemoteException;
+	public void setRenter(int renter) throws RemoteException;
 	public double getPrice() throws RemoteException;
 	public void setPrice(double price) throws RemoteException;
 	public int getGlobalMark() throws RemoteException;

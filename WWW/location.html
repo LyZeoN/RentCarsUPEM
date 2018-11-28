@@ -26,6 +26,7 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
+      <li><a href="renthistory.html">My cars  <b id="new"></b></a></li>
       <li><a href="loginAchat.html" onClick='logout()'><i class="fas fa-power-off fa-lg" style="color:#ffffff"></i></a></li>
     </ul>
   </div>
@@ -54,7 +55,7 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
     <!-- Chargement des véhicules -->
         
     $.ajax({
-        url: 'http://localhost:8080/UPEMCarsServices/services/CarService?method=getCars',
+        url: 'http://localhost:8080/RentCarsUPEMSoap/services/RentCarsGateway?method=getCars',
         type: 'GET',
         crossDomain: true,
         dataType: 'xml',
@@ -62,13 +63,19 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
         	var xmlText = $(result).find("getCarsResponse").children()
                 .each(function(index){
                     var num = index + 1;
-                    var id = $(result).find("ns" + num + "\\:id").text();
-                    var globalMark = $(result).find("ns" + num + "\\:globalMark").text();
-                    var price = $(result).find("ns" + num + "\\:pricelocation").text();
-                    var model = $(result).find("ns" + num + "\\:model").text();
-                    var str = "<tr><td>" + model + "</td><td>" + globalMark + "</td><td>" + price + " €</td><td><button type='button' class='btn btn-primary' onClick='louer(" + id + ")'>louer</button></td><td><button type='button' class='btn btn-primary' onClick='avis(" + id + ")'>Details</button></td></tr>";
-                    document.getElementById("cars").innerHTML += str;
-                    });                   
+                    var idrenter = $(result).find("ns" + num + "\\:idRenter").text();
+                    if (idrenter != localStorage.getItem("id")){
+	                    var id = $(result).find("ns" + num + "\\:id").text();
+	                    var globalMark = $(result).find("ns" + num + "\\:globalMark").text();
+	                    var price = $(result).find("ns" + num + "\\:pricelocation").text();
+	                    var model = $(result).find("ns" + num + "\\:model").text();
+	                    var str = "<tr><td>" + model + "</td><td>" + globalMark + "</td><td>" + price + " €</td><td><button type='button' class='btn btn-primary' onClick='louer(" + id + ")'>louer</button></td><td><button type='button' class='btn btn-primary' onClick='avis(" + id + ")'>Details</button></td></tr>";
+	                    document.getElementById("cars").innerHTML += str;
+	                }else if (idrenter == localStorage.getItem("id")){
+	                		document.getElementById("new").innerHTML = '<span class="label label-default">New</span>'
+
+	                }
+            });                   
                                   },
         error: function(error) { alert("Erreur requête, veuillez réessayer"); },
       });
@@ -79,23 +86,18 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
   	document.location.href='voiture.html';
   }
     
-  function buy() {
-       identifiant=prompt('Identifiant',"");
+
+  function louer(id){
+  	   identifiant=prompt('Mail',"");
        while (identifiant == ""){
-            identifiant=prompt('Identifiant',"");
+            identifiant=prompt('Mail',"");
        }
        password=prompt('Password',"");
        while (password == ""){
             password=prompt('Password',"");
        }
 
-       alert("Vous avez acheter la voiture !");
-       alert("Error Banque");
-       
-  }
-
-  function louer(id){
-      var url = 'http://localhost:8080/RentCarsUPEMSoap/services/RentCarsGateway?method=rentVehicule&id=' + id + '&employeeID=' + localStorage.getItem("id");
+      var url = 'http://localhost:8080/RentCarsUPEMSoap/services/RentCarsGateway?method=rentVehicule&id=' + id +"&employeeid="+localStorage.getItem('id')+"&mail="+identifiant+"&password="+password;
         $.ajax({
         url: url,
         type: 'GET',
@@ -120,6 +122,7 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
         localStorage.removeItem("service");
         localStorage.removeItem("email");
         localStorage.removeItem("status");
+        localStorage.removeItem("id_car");
         document.location.href = 'loginAchat.html';
    }
 </script>

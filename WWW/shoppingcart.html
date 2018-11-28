@@ -110,9 +110,11 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
   }
 
   function logout(){
+        localStorage.removeItem("id");
         localStorage.removeItem("service");
         localStorage.removeItem("email");
         localStorage.removeItem("status");
+        localStorage.removeItem("id_car");
         document.location.href = 'loginAchat.html';
    }
 </script>

@@ -4,38 +4,6 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://buy" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="add">
-    <complexType>
-     <sequence>
-      <element name="firstName" type="xsd:string"/>
-      <element name="lastName" type="xsd:string"/>
-      <element name="mail" type="xsd:string"/>
-      <element name="password" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="addResponse">
-    <complexType>
-     <sequence>
-      <element name="addReturn" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="connection">
-    <complexType>
-     <sequence>
-      <element name="mail" type="xsd:string"/>
-      <element name="password" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="connectionResponse">
-    <complexType>
-     <sequence>
-      <element name="connectionReturn" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="getUserShoppingCart">
     <complexType>
      <sequence>
@@ -78,37 +46,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="pricelocation" type="xsd:double"/>
     </sequence>
    </complexType>
-   <element name="addArticleHistory">
-    <complexType>
-     <sequence>
-      <element name="model" type="xsd:string"/>
-      <element name="price" type="xsd:double"/>
-      <element name="haveBeenRented" type="xsd:int"/>
-      <element name="userID" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="addArticleHistoryResponse">
-    <complexType>
-     <sequence>
-      <element name="addArticleHistoryReturn" type="xsd:boolean"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getObs">
-    <complexType>
-     <sequence>
-      <element name="carID" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="getObsResponse">
-    <complexType>
-     <sequence>
-      <element name="getObsReturn" type="impl:CarSquelleton"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="buyCar">
     <complexType>
      <sequence>
@@ -122,6 +59,21 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="buyCarReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="connection">
+    <complexType>
+     <sequence>
+      <element name="mail" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="connectionResponse">
+    <complexType>
+     <sequence>
+      <element name="connectionReturn" type="xsd:int"/>
      </sequence>
     </complexType>
    </element>
@@ -149,6 +101,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="addArticleHistory">
+    <complexType>
+     <sequence>
+      <element name="model" type="xsd:string"/>
+      <element name="price" type="xsd:double"/>
+      <element name="haveBeenRented" type="xsd:int"/>
+      <element name="globalMark" type="xsd:int"/>
+      <element name="userID" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addArticleHistoryResponse">
+    <complexType>
+     <sequence>
+      <element name="addArticleHistoryReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="addArticleBasket">
     <complexType>
      <sequence>
@@ -164,20 +134,37 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="add">
+    <complexType>
+     <sequence>
+      <element name="firstName" type="xsd:string"/>
+      <element name="lastName" type="xsd:string"/>
+      <element name="mail" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addResponse">
+    <complexType>
+     <sequence>
+      <element name="addReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
  </wsdl:types>
 
-   <wsdl:message name="addArticleHistoryRequest">
+   <wsdl:message name="getUserHistoryResponse">
 
-      <wsdl:part element="impl:addArticleHistory" name="parameters">
+      <wsdl:part element="impl:getUserHistoryResponse" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="getUserHistoryResponse">
+   <wsdl:message name="addArticleHistoryRequest">
 
-      <wsdl:part element="impl:getUserHistoryResponse" name="parameters">
+      <wsdl:part element="impl:addArticleHistory" name="parameters">
 
       </wsdl:part>
 
@@ -207,14 +194,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="getObsRequest">
-
-      <wsdl:part element="impl:getObs" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="getCarsRequest">
 
       <wsdl:part element="impl:getCars" name="parameters">
@@ -239,14 +218,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="addResponse">
-
-      <wsdl:part element="impl:addResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="getCarsResponse">
 
       <wsdl:part element="impl:getCarsResponse" name="parameters">
@@ -255,9 +226,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="getObsResponse">
+   <wsdl:message name="addResponse">
 
-      <wsdl:part element="impl:getObsResponse" name="parameters">
+      <wsdl:part element="impl:addResponse" name="parameters">
 
       </wsdl:part>
 
@@ -271,17 +242,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="addRequest">
+   <wsdl:message name="addArticleHistoryResponse">
 
-      <wsdl:part element="impl:add" name="parameters">
+      <wsdl:part element="impl:addArticleHistoryResponse" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="addArticleHistoryResponse">
+   <wsdl:message name="addRequest">
 
-      <wsdl:part element="impl:addArticleHistoryResponse" name="parameters">
+      <wsdl:part element="impl:add" name="parameters">
 
       </wsdl:part>
 
@@ -313,30 +284,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:portType name="CarService">
 
-      <wsdl:operation name="add">
-
-         <wsdl:input message="impl:addRequest" name="addRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:addResponse" name="addResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="connection">
-
-         <wsdl:input message="impl:connectionRequest" name="connectionRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:connectionResponse" name="connectionResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="getUserShoppingCart">
 
          <wsdl:input message="impl:getUserShoppingCartRequest" name="getUserShoppingCartRequest">
@@ -349,30 +296,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="addArticleHistory">
-
-         <wsdl:input message="impl:addArticleHistoryRequest" name="addArticleHistoryRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:addArticleHistoryResponse" name="addArticleHistoryResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getObs">
-
-         <wsdl:input message="impl:getObsRequest" name="getObsRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:getObsResponse" name="getObsResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="buyCar">
 
          <wsdl:input message="impl:buyCarRequest" name="buyCarRequest">
@@ -380,6 +303,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:buyCarResponse" name="buyCarResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="connection">
+
+         <wsdl:input message="impl:connectionRequest" name="connectionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:connectionResponse" name="connectionResponse">
 
        </wsdl:output>
 
@@ -409,6 +344,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="addArticleHistory">
+
+         <wsdl:input message="impl:addArticleHistoryRequest" name="addArticleHistoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addArticleHistoryResponse" name="addArticleHistoryResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="addArticleBasket">
 
          <wsdl:input message="impl:addArticleBasketRequest" name="addArticleBasketRequest">
@@ -421,47 +368,23 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="add">
+
+         <wsdl:input message="impl:addRequest" name="addRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addResponse" name="addResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
    </wsdl:portType>
 
    <wsdl:binding name="CarServiceSoapBinding" type="impl:CarService">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-
-      <wsdl:operation name="add">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="addRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="addResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="connection">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="connectionRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="connectionResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
 
       <wsdl:operation name="getUserShoppingCart">
 
@@ -481,42 +404,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="addArticleHistory">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="addArticleHistoryRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="addArticleHistoryResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="getObs">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="getObsRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="getObsResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="buyCar">
 
          <wsdlsoap:operation soapAction=""/>
@@ -528,6 +415,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="buyCarResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="connection">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="connectionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="connectionResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -571,6 +476,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="addArticleHistory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addArticleHistoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addArticleHistoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="addArticleBasket">
 
          <wsdlsoap:operation soapAction=""/>
@@ -582,6 +505,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="addArticleBasketResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="add">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addResponse">
 
             <wsdlsoap:body use="literal"/>
 

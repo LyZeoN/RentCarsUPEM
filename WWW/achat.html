@@ -69,7 +69,7 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
                     var rented = $(result).find("ns" + num + "\\:haveBeenRented").text();
                     var price = $(result).find("ns" + num + "\\:price").text();
                     var model = $(result).find("ns" + num + "\\:model").text();
-                    if (parseInt(rented) >= 0){
+                    if (parseInt(rented) > 0){
                         var str = "<tr><td>" + model + "</td><td>" + globalMark + "</td><td>" + price + " €</td><td><button type='button' class='btn btn-primary' onClick='addBasket(" + id + ")'>Ajouter au panier</button></td><td><button type='button' class='btn btn-primary' onClick='avis(" + id + ")'>Details</button></td></tr>";
                         document.getElementById("cars").innerHTML += str;
                     }
@@ -98,7 +98,7 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
                 alert("La voiture a bien été ajouté au panier");
             }
             else{
-                alert("Erreur lors de l'ajout au panier");
+                alert("Voiture déja au panier.");
             }
                                   
             },
@@ -106,28 +106,12 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
       });
     }
     
-  function buy() {
-       identifiant=prompt('Identifiant',"");
-       while (identifiant == ""){
-            identifiant=prompt('Identifiant',"");
-       }
-       password=prompt('Password',"");
-       while (password == ""){
-            password=prompt('Password',"");
-       }
-
-       alert("Vous avez acheter la voiture !");
-       alert("Error Banque");
-  }
-
-  function hello(id){
-      alert(id);
-  }
   function logout(){
         localStorage.removeItem("service");
         localStorage.removeItem("id");
         localStorage.removeItem("email");
         localStorage.removeItem("status");
+        localStorage.removeItem("id_car");
         document.location.href = 'loginAchat.html';
    }
 </script>

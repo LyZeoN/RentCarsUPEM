@@ -68,10 +68,10 @@
 			var password = document.getElementById("password").value;
 			var service = document.getElementById("service").value;
 			if (service === 'Achat'){
-				var url = 'http://localhost:8080/UPEMCarsServices/services/CarService?method=connection' + '&mail=' + mail + '&password=' + password;
+				var url = 'http://localhost:8080/UPEMCarsServices/services/CarService?method=connection&mail=' + mail + '&password=' + password;
 			}
 			else {
-				var url = 'http://localhost:8080/UPEMCorpSoap/services/UPEMCorpGateway?method=connection' + '&mail=' + mail + '&password=' + password;
+				var url = 'http://localhost:8080/UPEMCorpSoap/services/UPEMCorpGateway?method=connection&mail=' + mail + '&password=' + password;
 			}
 			$.ajax({
 				url: url,
@@ -118,6 +118,8 @@
 			localStorage.removeItem("service");
 			localStorage.removeItem("email");
 			localStorage.removeItem("status");
+			localStorage.removeItem("id_car");
+			localStorage.removeItem("id");
 			document.location.href = 'loginAchat.html';
 		}
 		

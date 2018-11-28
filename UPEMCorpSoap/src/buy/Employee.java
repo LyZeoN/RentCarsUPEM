@@ -16,9 +16,9 @@ public class Employee{
 		this.password = "1234";
 		this.mail = "hello.word";
 	}
-	public Employee(int idi,String firstName, String lastName, String password, String mail) throws RemoteException{
+	public Employee(int id,String firstName, String lastName, String password, String mail) throws RemoteException{
 		super();
-		idi = id;
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;

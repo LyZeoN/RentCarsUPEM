@@ -1,7 +1,6 @@
 package buy;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.List;
 
 public interface IEmployees extends Remote{
 	public int connection(String mail, String password) throws RemoteException;

@@ -23,7 +23,6 @@ public class Employees extends UnicastRemoteObject implements IEmployees{
 		return -1;
 	}
 	
-	
 	public int add(String firstName, String lastName, String mail, String password) throws RemoteException{
 		for (IEmployee e : employees.values()) {
 			if (e.getMail().equals(mail)) {
@@ -32,8 +31,7 @@ public class Employees extends UnicastRemoteObject implements IEmployees{
 		}
 		employees.put(nextID,new Employee(nextID,firstName, lastName, password, mail));
 		nextID++;
-
-		return nextID - 1 ;
+		return nextID -1;
 	}
 	
 	public IEmployee[] getEmployees() throws RemoteException{
@@ -43,6 +41,7 @@ public class Employees extends UnicastRemoteObject implements IEmployees{
 		}
 		return acc;
 	}
+	
 	public void notifyUser(int userID,String model) throws RemoteException{
 		employees.get(userID).notifyMe(model);
 	

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <?php header("Access-Control-Allow-Origin: *"); ?>
+  <title>UPEM Cars Service</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+  <div class="jumbotron">
+    <h1>UPEM Cars Service</h1>      
+    <p>Propose à la vente les véhicules qui ont été loués au moins une fois. Ce service Web permet de consulter
+les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un panier et de les acheter. </p>
+  </div>
+  <nav class="navbar navbar-inverse ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">UPEM Cars Service</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="location.html">Home</a></li>
+      <li class = "active"><a href="#">My cars</a></li>
+      <li><a href="loginAchat.html" onClick='logout()'><i class="fas fa-power-off fa-lg" style="color:#ffffff"></i></a></li>
+    </ul>
+  </div>
+</nav>
+</div>
+<div class="container">
+  <h2>Voiture disponible</h2>          
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Note</th>
+        <th>Prix</th>
+        <th>Achat</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody id="cars">
+        
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
+<script>
+    <!-- Chargement des véhicules -->
+        
+    $.ajax({
+        url: 'http://localhost:8080/RentCarsUPEMSoap/services/RentCarsGateway?method=getCars',
+        type: 'GET',
+        crossDomain: true,
+        dataType: 'xml',
+        success: function(result) {
+        	var xmlText = $(result).find("getCarsResponse").children()
+                .each(function(index){
+                    var num = index + 1;
+                    var idrenter = $(result).find("ns" + num + "\\:idRenter").text();
+                    if (idrenter == localStorage.getItem("id")){
+	                    var id = $(result).find("ns" + num + "\\:id").text();
+	                    var globalMark = $(result).find("ns" + num + "\\:globalMark").text();
+	                    var price = $(result).find("ns" + num + "\\:pricelocation").text();
+	                    var model = $(result).find("ns" + num + "\\:model").text();
+	                    var str = "<tr><td>" + model + "</td><td>" + globalMark + "</td><td>" + price + " €</td><td><button type='button' class='btn btn-primary' onClick='free(" + id + ")'>Rendre</button></td><td><button type='button' class='btn btn-primary' onClick='voiture(" + id + ")'>Details</button></td></tr>";
+	                    document.getElementById("cars").innerHTML += str;
+	                }
+            });                   
+                                  },
+        error: function(error) { alert("Erreur requête, veuillez réessayer"); },
+      });
+    
+  var identifiant,password;
+  function voiture(id){
+  	localStorage.setItem("id_car",id);
+  	document.location.href='voiture.html';
+  }
+
+  function free(id){
+      var url = 'http://localhost:8080/RentCarsUPEMSoap/services/RentCarsGateway?method=freeCar&carID=' + id;
+        $.ajax({
+        url: url,
+        type: 'GET',
+        crossDomain: true,
+        dataType: 'xml',
+        success: function(result) {
+        	var xmlText = $(result).find("freeCarResponse").text();
+            if (xmlText === "true"){
+                alert("La voiture a été rendu. Un avis ?");
+                var mark = parseInt(prompt("Entrer une note valide si vous voulez entrer un avis > 0 et < 10:"));
+                if(!isNaN(mark)){
+                    while (mark === 0){
+                        mark = parseInt(prompt("Entrer une note valide si vous voulez entrer un avis > 0 et < 10:"));
+                    }
+                    var obs = prompt("Entrer l'observation :");
+                    while (obs === "" || obs === null){
+                        obs = prompt("Entrer l'observation :");
+                    }
+                    $.ajax({
+                    url: 'http://localhost:8080/RentCarsUPEMSoap/services/RentCarsGateway?method=setObservation&userID='+localStorage.getItem("id")+'&carID='+id+'&carroserieMark='+mark+'&carroserieDescription='+obs,
+                    type: 'GET',
+                    crossDomain: true,
+                    dataType: 'xml',
+                    success: function(result) {
+                          alert("Merci pour votre avis.");
+                    },                   
+                    error: function(error) { alert("Erreur requête avis, veuillez réessayer"); },
+                  });
+
+                }
+
+                document.location.href = 'renthistory.html';
+            }
+            else{
+                alert("Erreur pour rendre la voiture");
+            }
+                                  
+            },
+        error: function(error) { alert("Erreur requête, veuillez réessayer"); },
+      });
+  }
+  function logout(){
+        localStorage.removeItem("id");
+        localStorage.removeItem("service");
+        localStorage.removeItem("email");
+        localStorage.removeItem("status");
+        localStorage.removeItem("id_car");
+        document.location.href = 'loginAchat.html';
+   }
+</script>
+<script>
+    if (localStorage.getItem("status") === null){
+        document.location.href = 'loginAchat.html'
+    }
+</script>
+
+

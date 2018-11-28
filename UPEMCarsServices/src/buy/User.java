@@ -76,8 +76,8 @@ public class User {
 	public int getID() {
 		return id;
 	}
-	public void addArticleHistory(String model,double price,int haveBeenRented) throws RemoteException {
-		history.add(new CarSquelleton(new ObservationSquelleton[1],0, model,price,0,haveBeenRented));
+	public void addArticleHistory(String model,double price,int haveBeenRented, int globalMark) throws RemoteException {
+		history.add(new CarSquelleton(new ObservationSquelleton[1],0, model,price,0,haveBeenRented,globalMark));
 	}
 
 	

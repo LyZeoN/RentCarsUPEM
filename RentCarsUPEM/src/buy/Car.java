@@ -17,22 +17,19 @@ public class Car extends UnicastRemoteObject implements ICar{
 	private final String model;
 	private double price;
 	private double pricelocation;
-	private int globalMark;
+	private int globalMark = 10;
 	private int haveBeenRented = 0;
-	private Optional<Integer> renter;
+	private int renter = -1;
 	private Map <Integer,IObservation> status = new HashMap<Integer,IObservation>();
 	private List<Integer> waitingQueue;
 	private int gone = 0;
 
 	public Car(int idi,String model, double price, double pricelocation) throws RemoteException {
 		id = idi;
-		
 		this.waitingQueue = new ArrayList<>();
 		this.model = model;
 		this.price = price;
 		this.pricelocation = pricelocation;
-		this.globalMark = 10;
-		this.renter = Optional.ofNullable(-1);
 		
 	}
 	
@@ -62,11 +59,11 @@ public class Car extends UnicastRemoteObject implements ICar{
 		this.haveBeenRented = haveBeenRented;
 	}
 
-	public Optional<Integer> getRenter() throws RemoteException {
+	public int getRenter() throws RemoteException {
 		return renter;
 	}
 
-	public void setRenter(Optional<Integer> renter) throws RemoteException {
+	public void setRenter(int renter) throws RemoteException {
 		this.renter = renter;
 	}
 	
@@ -90,13 +87,12 @@ public class Car extends UnicastRemoteObject implements ICar{
 		int cmp = 0;
 	
 			for(IObservation observation : status.values()) {
-				for (IStatus status : observation.getComponents().values()) {
-					globalMark = globalMark + status.getMark();
-					cmp ++;
-				}
+				globalMark += observation.getCarroserieMark();
+				cmp ++;
 			}
-		
-		globalMark /= cmp;
+		if (cmp != 0) {
+			globalMark /= cmp;
+		}
 
 	}
 	
@@ -105,47 +101,37 @@ public class Car extends UnicastRemoteObject implements ICar{
 	}
 	
 	public void addStatus(int employee, int carroserieMark,String carroserieDescription, int moteurMark,String moteurDescription, int roueMark,String roueDescription) throws RemoteException {
+		
 		if(status.containsKey(employee)) {
 			status.remove(employee);
 			status.put(employee,new Observation(carroserieMark,carroserieDescription,moteurMark,moteurDescription,roueMark,roueDescription));
-
 		}
 		else {
-			status.put(employee,new Observation(carroserieMark,carroserieDescription,moteurMark,moteurDescription,roueMark,roueDescription));
-
-			
+			status.put(employee,new Observation(carroserieMark,carroserieDescription,moteurMark,moteurDescription,roueMark,roueDescription));	
 		}
+		this.setGlobalMark();
 	}
 
 	public boolean freeMe() throws RemoteException, MalformedURLException, NotBoundException{
 		this.setGlobalMark();
 		if (! waitingQueue.isEmpty()) {
-			renter = Optional.ofNullable(waitingQueue.remove(0));
-			IEmployees r = (IEmployees) Naming.lookup("rmi://localhost:2020/UPEMCorp");
-			r.notifyUser(renter.get(), model);
+			renter = waitingQueue.remove(0);
 			return true;
 
 		}else {
-			renter = Optional.empty();
+			renter = -1;
 		}
 		return false;
 	}
 
 	public boolean rentMe(int userID) throws RemoteException, MalformedURLException, NotBoundException {
-		if (!renter.isPresent()) {
-			renter = Optional.ofNullable(userID);
-				IEmployees r = (IEmployees) Naming.lookup("rmi://localhost:2020/UPEMCorp");
-				r.notifyUser(userID, model);
-				return true;
+		if (renter == -1) {
+			renter = userID;	
+			haveBeenRented++;
+			return true;
 		}else {
 			waitingQueue.add(userID);
+			return false;
 		}
-		return false;
 	}
-	
-	
-
-	
-
-
 }

@@ -1,19 +1,15 @@
 package buy;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
-
 
 public class Car{
-	int id;
+	private int id;
 	private final String model;
 	private double price;
 	private double pricelocation;
 	private int globalMark;
+	private int idRenter = 0;
 	private int haveBeenRented = 0;
-
+	private ObservationSquelleton[] observations;
 	public Car() {
 		id = -1;
 		this.model = "";
@@ -21,14 +17,16 @@ public class Car{
 		this.pricelocation = -1;
 		this.globalMark = -1;
 	}
-	public Car(int idi,String model, double price, double pricelocation) throws RemoteException {
+	public Car(ObservationSquelleton[] observationsi,int idi,String model, double price, double pricelocation,int idRenter, int haveBeenRented,int globalMark) throws RemoteException {
 		id = idi;
 		this.model = model;
 		this.price = price;
 		this.pricelocation = pricelocation;
-		this.globalMark = 10;
+		this.globalMark = globalMark;
+		this.idRenter = idRenter;
+		this.observations = observationsi;
+		this.haveBeenRented = haveBeenRented;
 	}
-	
 	public int getId() {
 		return id;
 	}
@@ -53,15 +51,28 @@ public class Car{
 	public void setGlobalMark(int globalMark) {
 		this.globalMark = globalMark;
 	}
+
+	public int getIdRenter() {
+		return idRenter;
+	}
+	public void setIdRenter(int idRenter) {
+		this.idRenter = idRenter;
+	}
+
+	public void setObservations(ObservationSquelleton[] observations) {
+		this.observations = observations;
+	}
+	public String getModel() {
+		return model;
+	}
 	public int getHaveBeenRented() {
 		return haveBeenRented;
 	}
 	public void setHaveBeenRented(int haveBeenRented) {
 		this.haveBeenRented = haveBeenRented;
 	}
-
-	public String getModel() {
-		return model;
+	public ObservationSquelleton[] getObservations() {
+		return observations;
 	}
 
 }

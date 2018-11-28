@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="RentCarsUPEMSoap" path="/RentCarsUPEMSoap" reloadable="true" source="org.eclipse.jst.jee.server:RentCarsUPEMSoap"/><Context docBase="UPEMCorpSoap" path="/UPEMCorpSoap" reloadable="true" source="org.eclipse.jst.jee.server:UPEMCorpSoap"/><Context docBase="WebBankService" path="/WebBankService" reloadable="true" source="org.eclipse.jst.jee.server:WebBankService"/><Context docBase="UPEMCarsServices" path="/UPEMCarsServices" reloadable="true" source="org.eclipse.jst.jee.server:UPEMCarsServices"/></Host>
+      <Context docBase="RentCarsUPEMSoap" path="/RentCarsUPEMSoap" reloadable="true" source="org.eclipse.jst.jee.server:RentCarsUPEMSoap"/><Context docBase="UPEMCarsServices" path="/UPEMCarsServices" reloadable="true" source="org.eclipse.jst.jee.server:UPEMCarsServices"/><Context docBase="UPEMCorpSoap" path="/UPEMCorpSoap" reloadable="true" source="org.eclipse.jst.jee.server:UPEMCorpSoap"/><Context docBase="WebBankService" path="/WebBankService" reloadable="true" source="org.eclipse.jst.jee.server:WebBankService"/></Host>
     </Engine>
   </Service>
 </Server>

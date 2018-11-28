@@ -25,20 +25,12 @@ public class Cars extends UnicastRemoteObject implements ICars {
 	}
 
 	public ICar[] getCars() throws RemoteException {
-		int j = 0;
-		for(ICar e : allCars.values()) {
-			if(e.getGone() != -1) {
-				j++;
-			}
-		}
-		int k = 0;
+		int j = allCars.size();
 		ICar[] acc = new ICar[j];
-		for (int i = 0; i < allCars.size(); i++) {
-			if(allCars.get(i).getGone() != -1) {
-				acc[k] = allCars.get(i);
-				k++;
-
-			}
+		int i = 0;
+		for (ICar c : allCars.values()) {
+			acc[i] = c;
+			i++;
 		}
 		return acc;
 	}
@@ -53,6 +45,10 @@ public class Cars extends UnicastRemoteObject implements ICars {
 
 	public int getSelectedCarsHBR(int carID) throws RemoteException {
 		return allCars.get(carID).getHaveBeenRented();
+	}
+	
+	public int getSelectedCarsGlobalMark(int carID) throws RemoteException {
+		return allCars.get(carID).getGlobalMark();
 	}
 	
 	public double getSelectedCarsPriceLocation(int carID) throws RemoteException {
@@ -76,10 +72,6 @@ public class Cars extends UnicastRemoteObject implements ICars {
 		for (IObservation obs : allCars.get(carID).getStatus().values()) {
 			acc[i] = obs;
 			i++;
-
-
-			
-			
 		}
 		return acc;
 		
@@ -100,43 +92,46 @@ public class Cars extends UnicastRemoteObject implements ICars {
 		return tmp;
 		
 	}
-	public boolean rentVehicule(int id,int employee) throws RemoteException, MalformedURLException, NotBoundException, ServiceException {
+	public boolean rentVehicule(int id, int employeeid, String mail, String password) throws RemoteException, MalformedURLException, NotBoundException, ServiceException {
 		/* If the car is already rented return false */
 		if(allCars.get(id) == null) {
 			return false;
 		}
-		if(allCars.get(id).getRenter().get() != -1)
-			return false;
 		Bank service;
 		service = new BankServiceLocator().getBank();
 		((BankSoapBindingStub) service).setMaintainSession(true);
-		IEmployees r = (IEmployees) Naming.lookup("rmi://localhost:2020/UPEMCorp");
-		IEmployee employe = r.getEmployee(employee);
-		if(service.withdrawMoney(employe.getMail(), employe.getPassword(), allCars.get(id).getPrice())) {
-			allCars.get(id).rentMe(employee);
+		if(service.withdrawMoney(mail, password, allCars.get(id).getPricelocation())) {
+			allCars.get(id).rentMe(employeeid);
 			allCars.get(id).setGone(-1);
 			return true;			
 		}
-
-
 		return false;
-
+	}
+	
+	public boolean freeCar(int id) throws RemoteException, MalformedURLException, NotBoundException {
+		/* If the car is already rented return false */
+		if(allCars.get(id) == null) {
+			return false;
+		}
+		allCars.get(id).freeMe();
+		return true;
+		
 	}
 
-	
 	public boolean buyCar(int id) throws RemoteException {
-		
-		allCars.get(id).setGone(-1);
+		allCars.remove(id);
+		/*allCars.get(id).setGone(-1);*/
 		return true;
 	}
+	
 	public int getCarGone(int id) throws RemoteException{
 		return allCars.get(id).getGone();
 	}
 
 	public double sendCarPrice(int id) throws RemoteException {
-
 		return allCars.get(id).getPrice();
 	}
+	
 	public void addObservation(int userID,int carID,int carroserieMark, String carroserieDescription,int moteurMark, String moteurDescription, int roueMark, String roueDescription) throws RemoteException {
 		allCars.get(carID).addStatus(userID, carroserieMark, carroserieDescription, moteurMark, moteurDescription, roueMark, roueDescription);
 	}

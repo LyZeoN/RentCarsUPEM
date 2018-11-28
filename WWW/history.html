@@ -63,7 +63,6 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
         	var xmlText = $(result).find("getUserHistoryResponse").children()
                 .each(function(index){
                     var num = index + 1;
-                    var id = $(result).find("ns" + num + "\\:id").text();
                     var globalMark = $(result).find("ns" + num + "\\:globalMark").text();
                     var price = $(result).find("ns" + num + "\\:price").text();
                     var model = $(result).find("ns" + num + "\\:model").text();
@@ -80,6 +79,8 @@ les prix des véhicules, de vérifier leur disponibilité, de les ajouter à un 
         localStorage.removeItem("service");
         localStorage.removeItem("email");
         localStorage.removeItem("status");
+        localStorage.removeItem("id");
+        localStorage.removeItem("id_car");
         document.location.href = 'loginAchat.html';
    }
 </script>

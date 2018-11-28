@@ -10,11 +10,10 @@
       <parameter name="className" value="buy.UPEMCorpGateway"/>
       <parameter name="wsdlPortType" value="UPEMCorpGateway"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation xmlns:operNS="http://buy" xmlns:retNS="http://buy" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="add" qname="operNS:add" returnQName="retNS:addReturn" returnType="rtns:int" soapAction="">
-        <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:firstName" type="tns:string"/>
-        <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:lastName" type="tns:string"/>
-        <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:mail" type="tns:string"/>
-        <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:password" type="tns:string"/>
+      <operation xmlns:operNS="http://buy" xmlns:retNS="http://buy" xmlns:rtns="http://buy" name="getEmployee" qname="operNS:getEmployee" returnQName="retNS:getEmployeeReturn" returnType="rtns:Employee" soapAction="">
+        <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:employeeID" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://buy" xmlns:retNS="http://buy" xmlns:rtns="http://buy" name="getEmployees" qname="operNS:getEmployees" returnQName="retNS:getEmployeesReturn" returnType="rtns:Employee" soapAction="">
       </operation>
       <operation xmlns:operNS="http://buy" xmlns:retNS="http://buy" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="connection" qname="operNS:connection" returnQName="retNS:connectionReturn" returnType="rtns:int" soapAction="">
         <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:mail" type="tns:string"/>
@@ -24,10 +23,11 @@
         <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:userID" type="tns:int"/>
         <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:model" type="tns:string"/>
       </operation>
-      <operation xmlns:operNS="http://buy" xmlns:retNS="http://buy" xmlns:rtns="http://buy" name="getEmployee" qname="operNS:getEmployee" returnQName="retNS:getEmployeeReturn" returnType="rtns:Employee" soapAction="">
-        <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:employeeID" type="tns:int"/>
-      </operation>
-      <operation xmlns:operNS="http://buy" xmlns:retNS="http://buy" xmlns:rtns="http://buy" name="getEmployees" qname="operNS:getEmployees" returnQName="retNS:getEmployeesReturn" returnType="rtns:Employee" soapAction="">
+      <operation xmlns:operNS="http://buy" xmlns:retNS="http://buy" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="add" qname="operNS:add" returnQName="retNS:addReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:firstName" type="tns:string"/>
+        <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:lastName" type="tns:string"/>
+        <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:mail" type="tns:string"/>
+        <parameter xmlns:pns="http://buy" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:password" type="tns:string"/>
       </operation>
       <parameter name="allowedMethods" value="add notifyUser getEmployees getEmployee connection"/>
 

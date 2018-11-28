@@ -9,9 +9,9 @@ public class Employee extends UnicastRemoteObject implements IEmployee{
 	private final String mail;
 	private String password;
 	
-	public Employee(int idi,String firstName, String lastName, String password, String mail) throws RemoteException{
+	public Employee(int id,String firstName, String lastName, String password, String mail) throws RemoteException{
 		super();
-		idi = id;
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
