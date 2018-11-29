@@ -1,11 +1,8 @@
 package buy;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import javax.xml.rpc.ServiceException;
@@ -27,18 +24,17 @@ class SetupProject {
 		bankservice.addAccount("USD", "jo@gmail.com", "super", "Hugo", "Douangmala",
 				"In the Sky", "0606060606", 60000000);	
 		
-		((IEmployees) corp).add("Rayane", "CHERIFI", "rc@gmail.com", "nice");
+		corp.add("Rayane", "CHERIFI", "rc@gmail.com", "nice");
 	}
 	@Test
 	void addCars() throws ServiceException, RemoteException, MalformedURLException, NotBoundException{
 		ICars s = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
-		
-		((ICars) s).addCar("Peugeot 308", 5000, 80);
-		((ICars) s).addCar("Peugeot 206", 3000, 50);
-		((ICars) s).addCar("Mercedes A180", 15000, 130);
-		((ICars) s).addCar("Reunault Clio IV", 10000, 80);
-		((ICars) s).addCar("MERCEDES-BENZ CLASSE S 350", 95000, 200);
-		((ICars) s).addCar("NISSAN QASHQAI 2", 10000, 80);		
+		s.addCar("Peugeot 308", 5000, 80);
+		s.addCar("Peugeot 206", 3000, 50);
+		s.addCar("Mercedes A180", 15000, 130);
+		s.addCar("Reunault Clio IV", 10000, 80);
+		s.addCar("MERCEDES-BENZ CLASSE S 350", 95000, 200);
+		s.addCar("NISSAN QASHQAI 2", 10000, 80);		
 
 		
 		

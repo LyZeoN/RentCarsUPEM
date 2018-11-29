@@ -84,7 +84,6 @@ class NewClientRentingCar {
 				bankservice.addAccount("USD", "hugo11@leonidas23.god", "bestintheworld", "Hugo", "Douangmala",
 						"In the Sky", "0606060606", 0);
 				bankservice.depositMoney("hugo11@leonidas23.god", "bestintheworld", 6000);
-				System.out.println(((ICars) s).getSelectedCarsPrice(1));
 				if (rentCars instanceof ICars) {
 					worked = ((ICars) rentCars).rentVehicule(1, 0, "hugo11@leonidas23.god", "bestintheworld");
 					/* Client has enough money on his account so it should return true */

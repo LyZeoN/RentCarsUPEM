@@ -4,67 +4,6 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://buy" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="addCar">
-    <complexType>
-     <sequence>
-      <element name="model" type="xsd:string"/>
-      <element name="price" type="xsd:int"/>
-      <element name="pricelocation" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="addCarResponse">
-    <complexType>
-     <sequence>
-      <element name="addCarReturn" type="xsd:boolean"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="rentVehicule">
-    <complexType>
-     <sequence>
-      <element name="id" type="xsd:int"/>
-      <element name="employeeid" type="xsd:int"/>
-      <element name="mail" type="xsd:string"/>
-      <element name="password" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="rentVehiculeResponse">
-    <complexType>
-     <sequence>
-      <element name="rentVehiculeReturn" type="xsd:boolean"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="buyCar">
-    <complexType>
-     <sequence>
-      <element name="id" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="buyCarResponse">
-    <complexType>
-     <sequence>
-      <element name="buyCarReturn" type="xsd:boolean"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="sendCarPrice">
-    <complexType>
-     <sequence>
-      <element name="id" type="xsd:int"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="sendCarPriceResponse">
-    <complexType>
-     <sequence>
-      <element name="sendCarPriceReturn" type="xsd:double"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="getSelectedCarsModel">
     <complexType>
      <sequence>
@@ -107,6 +46,36 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="addCar">
+    <complexType>
+     <sequence>
+      <element name="model" type="xsd:string"/>
+      <element name="price" type="xsd:int"/>
+      <element name="pricelocation" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addCarResponse">
+    <complexType>
+     <sequence>
+      <element name="addCarReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendCarPrice">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendCarPriceResponse">
+    <complexType>
+     <sequence>
+      <element name="sendCarPriceReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="freeCar">
     <complexType>
      <sequence>
@@ -121,18 +90,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="setObservation">
+   <element name="rentVehicule">
     <complexType>
      <sequence>
-      <element name="userID" type="xsd:int"/>
-      <element name="carID" type="xsd:int"/>
-      <element name="carroserieMark" type="xsd:int"/>
-      <element name="carroserieDescription" type="xsd:string"/>
+      <element name="id" type="xsd:int"/>
+      <element name="employeeid" type="xsd:int"/>
+      <element name="mail" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="setObservationResponse">
-    <complexType/>
+   <element name="rentVehiculeResponse">
+    <complexType>
+     <sequence>
+      <element name="rentVehiculeReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
    </element>
    <element name="getCars">
     <complexType/>
@@ -169,7 +142,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="idRenter" type="xsd:int"/>
      <element name="model" nillable="true" type="xsd:string"/>
      <element name="observations" nillable="true" type="impl:ArrayOfObservationSquelleton"/>
-     <element name="osb" nillable="true" type="impl:ArrayOfObservationSquelleton"/>
      <element name="price" type="xsd:double"/>
      <element name="pricelocation" type="xsd:double"/>
     </sequence>
@@ -185,6 +157,37 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="getObsReturn" type="impl:Car"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setObservation">
+    <complexType>
+     <sequence>
+      <element name="userID" type="xsd:int"/>
+      <element name="carID" type="xsd:int"/>
+      <element name="carroserieMark" type="xsd:int"/>
+      <element name="carroserieDescription" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="setObservationResponse">
+    <complexType>
+     <sequence>
+      <element name="setObservationReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buyCar">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buyCarResponse">
+    <complexType>
+     <sequence>
+      <element name="buyCarReturn" type="xsd:boolean"/>
      </sequence>
     </complexType>
    </element>
@@ -369,54 +372,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:portType name="RentCarsGateway">
 
-      <wsdl:operation name="addCar">
-
-         <wsdl:input message="impl:addCarRequest" name="addCarRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:addCarResponse" name="addCarResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="rentVehicule">
-
-         <wsdl:input message="impl:rentVehiculeRequest" name="rentVehiculeRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:rentVehiculeResponse" name="rentVehiculeResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="buyCar">
-
-         <wsdl:input message="impl:buyCarRequest" name="buyCarRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:buyCarResponse" name="buyCarResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="sendCarPrice">
-
-         <wsdl:input message="impl:sendCarPriceRequest" name="sendCarPriceRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:sendCarPriceResponse" name="sendCarPriceResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
       <wsdl:operation name="getSelectedCarsModel">
 
          <wsdl:input message="impl:getSelectedCarsModelRequest" name="getSelectedCarsModelRequest">
@@ -453,6 +408,30 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="addCar">
+
+         <wsdl:input message="impl:addCarRequest" name="addCarRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addCarResponse" name="addCarResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendCarPrice">
+
+         <wsdl:input message="impl:sendCarPriceRequest" name="sendCarPriceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sendCarPriceResponse" name="sendCarPriceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="freeCar">
 
          <wsdl:input message="impl:freeCarRequest" name="freeCarRequest">
@@ -465,13 +444,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="setObservation">
+      <wsdl:operation name="rentVehicule">
 
-         <wsdl:input message="impl:setObservationRequest" name="setObservationRequest">
+         <wsdl:input message="impl:rentVehiculeRequest" name="rentVehiculeRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:setObservationResponse" name="setObservationResponse">
+         <wsdl:output message="impl:rentVehiculeResponse" name="rentVehiculeResponse">
 
        </wsdl:output>
 
@@ -501,83 +480,35 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-   </wsdl:portType>
+      <wsdl:operation name="setObservation">
 
-   <wsdl:binding name="RentCarsGatewaySoapBinding" type="impl:RentCarsGateway">
+         <wsdl:input message="impl:setObservationRequest" name="setObservationRequest">
 
-      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+       </wsdl:input>
 
-      <wsdl:operation name="addCar">
+         <wsdl:output message="impl:setObservationResponse" name="setObservationResponse">
 
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="addCarRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="addCarResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="rentVehicule">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="rentVehiculeRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="rentVehiculeResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
+       </wsdl:output>
 
       </wsdl:operation>
 
       <wsdl:operation name="buyCar">
 
-         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input message="impl:buyCarRequest" name="buyCarRequest">
 
-         <wsdl:input name="buyCarRequest">
+       </wsdl:input>
 
-            <wsdlsoap:body use="literal"/>
+         <wsdl:output message="impl:buyCarResponse" name="buyCarResponse">
 
-         </wsdl:input>
-
-         <wsdl:output name="buyCarResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
+       </wsdl:output>
 
       </wsdl:operation>
 
-      <wsdl:operation name="sendCarPrice">
+   </wsdl:portType>
 
-         <wsdlsoap:operation soapAction=""/>
+   <wsdl:binding name="RentCarsGatewaySoapBinding" type="impl:RentCarsGateway">
 
-         <wsdl:input name="sendCarPriceRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="sendCarPriceResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
       <wsdl:operation name="getSelectedCarsModel">
 
@@ -633,6 +564,42 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="addCar">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addCarRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addCarResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendCarPrice">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendCarPriceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendCarPriceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="freeCar">
 
          <wsdlsoap:operation soapAction=""/>
@@ -651,17 +618,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="setObservation">
+      <wsdl:operation name="rentVehicule">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="setObservationRequest">
+         <wsdl:input name="rentVehiculeRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="setObservationResponse">
+         <wsdl:output name="rentVehiculeResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -698,6 +665,42 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="getObsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setObservation">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="setObservationRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setObservationResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buyCar">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buyCarRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buyCarResponse">
 
             <wsdlsoap:body use="literal"/>
 

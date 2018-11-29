@@ -42,9 +42,8 @@ public class CarService {
 
 	public CarSquelleton[] getUserShoppingCart(int userID)
 			throws MalformedURLException, RemoteException, NotBoundException {
-
+		users.get(userID);
 		Integer[] shoppingCart = users.get(userID).getBasket();
-
 		ICars s = (ICars) Naming.lookup("rmi://localhost:2020/RentCarsUPEM");
 		CarSquelleton[] tabCars = new CarSquelleton[shoppingCart.length];
 		int i = 0;

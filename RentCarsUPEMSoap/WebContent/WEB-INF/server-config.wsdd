@@ -80,6 +80,7 @@
   <ns1:parameter name="schemaQualified" value="http://buy"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://buy"/>
   <ns1:parameter name="wsdlServiceElement" value="RentCarsGatewayService"/>
+  <ns1:parameter name="scope" value="application"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns12:Car" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:buy.Car" xmlns:ns12="http://buy"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns13:ObservationSquelleton" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:buy.ObservationSquelleton" xmlns:ns13="http://buy"/>
   <ns1:arrayMapping innerType="ns14:ObservationSquelleton" languageSpecificType="java:buy.ObservationSquelleton[]" qname="ns14:ArrayOfObservationSquelleton" xmlns:ns14="http://buy"/>

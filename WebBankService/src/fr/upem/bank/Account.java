@@ -96,6 +96,7 @@ public class Account {
 		ConverterSoap currencyConverter = new ConverterLocator().getConverterSoap();
 		BigDecimal taux = currencyConverter.getConversionRate(cur1, cur2, currencyConverter.getLastUpdateDate());
 		return Math.round(amount * taux.doubleValue());
+		
 	}
 	
 	public boolean withdraw(double amount) throws RemoteException, ServiceException  {

@@ -1,6 +1,5 @@
 package buy;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 
 public class Employee{
 	private int id;

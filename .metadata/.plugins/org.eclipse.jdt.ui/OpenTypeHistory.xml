@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-    <typeInfo handle="=RentCarsUPEMSoap/src&lt;buy{RentCarsGateway.java[RentCarsGateway" modifiers="1" timestamp="1543374505010"/>
+    <typeInfo handle="=RentCarsUPEMSoap/src&lt;buy{RentCarsGateway.java[RentCarsGateway" modifiers="1" timestamp="1543456669548"/>
     <typeInfo handle="=UPEMCarsServices/src&lt;buy{CarService.java[CarService" modifiers="1" timestamp="1543370686349"/>
-    <typeInfo handle="=UPEMCorpSoap/src&lt;buy{UPEMCorpGateway.java[UPEMCorpGateway" modifiers="1" timestamp="1543361159389"/>
-    <typeInfo handle="=WebBankService/src&lt;fr.upem.bank{Bank.java[Bank" modifiers="1" timestamp="1543238372522"/>
+    <typeInfo handle="=UPEMCorpSoap/src&lt;buy{UPEMCorpGateway.java[UPEMCorpGateway" modifiers="1" timestamp="1543457436443"/>
+    <typeInfo handle="=WebBankService/src&lt;fr.upem.bank{Bank.java[Bank" modifiers="1" timestamp="1543457470001"/>
 </typeInfoHistroy>
